@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block title %}404 page not found{% endblock %}
+
+{% block content %}
+
+<section class="about-section text-center" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="text-white mb-4">Nous n'avons pas trouvé la page que vous recherchez</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

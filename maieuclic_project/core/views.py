@@ -5,8 +5,7 @@ from django.shortcuts import render
 
 # home
 def home(request):
-    pass
-    # return render(request, 'home.html')
+    return render(request, 'home.html')
 
 
 # legal notices
