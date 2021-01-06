@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'zbq$atm03b&7o5lgxnpaelrfjyb*r7($*c@#d=ncdj!-7u(h8e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -80,15 +80,14 @@ WSGI_APPLICATION = 'maieuclic_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { # travis DB
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # 'postgresql', 'mysql', 'sqlite3', 'oracle'.
-        'NAME': 'maieuclic',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
         'USER': 'postgres',
-        'PASSWORD': 'mvtm,js1np',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
-        'CONN_MAX_AGE': 500,
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 

@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'maieuclic_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = { # change DB for test
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # 'postgresql', 'mysql', 'sqlite3', 'oracle'.
         'NAME': 'maieuclic',
