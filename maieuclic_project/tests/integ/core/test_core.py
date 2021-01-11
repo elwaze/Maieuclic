@@ -10,16 +10,17 @@ class CoreTestCase(GeneralTestCase):
 
         self.contact_url = '{}/home/contact'.format(self.live_server_url)
 
-    def core_basis(self, url):
-        # Opening the link we want to test
-        self.selenium.get(url)
+    # def core_basis(self, url):
+    #     # Opening the link we want to test
+    #     self.selenium.get(url)
 
     def test_contact(self):
         """
         Tests the contact form sends email to maieuclic.
         """
+        self.selenium.get(self.contact_url)
         # Find the form element
-        subject = self.selenium.find_element_by_id("id_subject")
+        subject = self.selenium.find_element_by_name("subject")
         message = self.selenium.find_element_by_name("message")
         sender = self.selenium.find_element_by_name("sender")
         send_copy = self.selenium.find_element_by_name("send_copy")
