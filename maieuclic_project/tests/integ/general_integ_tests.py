@@ -1,7 +1,7 @@
 import os
 import json
 
-from tests import TESTS_ROOT
+# from tests import TESTS_ROOT
 
 from django.test import LiveServerTestCase
 from django.contrib.auth.models import User
@@ -10,8 +10,6 @@ from selenium import webdriver
 from seleniumlogin import force_login
 from webdriver_manager.chrome import ChromeDriverManager
 
-from apps.off.models import Category
-from apps.off.models import Product
 
 PASSWORD = 'connection'
 FIRST_NAME = 'Selenium'
@@ -23,8 +21,8 @@ class GeneralTestCase(LiveServerTestCase):
     Parent class to setup the selenium tests.
     """
     selenium = None
-    # created_user = None
-    # login_required = True
+    created_user = None
+    login_required = True
 
     # def setUp(self) -> None:
     #     self.setup_fixtures()
