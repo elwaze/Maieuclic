@@ -45,5 +45,5 @@ class CoreTestCase(GeneralTestCase):
 
         # check the email content
         self.assertEqual(mail.outbox[0].subject, 'test')
-        self.assertEqual(mail.outbox[0].recipients()[0], 'selenium@gmail.com')
+        self.assertEqual(mail.outbox[0].recipients()[0], 'maieuclic@gmail.com')
         self.assertIn('message', mail.outbox[0].body)
