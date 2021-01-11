@@ -10,11 +10,9 @@ def home(request):
 
 # legal notices
 def legal_notices(request):
-    pass
-    # return render(request, 'legal_notices.html')
+    return render(request, 'legal_notices.html')
 
 
 # legal notices
 def contact(request):
-    pass
-    # return render(request, 'contact.html')
+    return render(request, 'contact.html')
