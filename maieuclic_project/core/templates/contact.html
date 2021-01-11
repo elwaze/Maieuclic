@@ -17,11 +17,23 @@
                     <form class="form-inline d-flex" action="{% url 'contact' %}" method="post">
                         {% csrf_token %}
                         <!--{{ form.as_p }}-->
-                        <p><label for="id_subject">Subject :</label> <input type="text" name="subject" maxlength="100" required id="id_subject"></p>
-<p><label for="id_message">Message :</label> <textarea name="message" cols="40" rows="10" required id="id_message">
-</textarea></p>
-<p><label for="id_sender">Votre adresse e-mail :</label> <input type="email" name="sender" required id="id_sender"></p>
-<p><label for="id_send_copy">Send copy :</label> <input type="checkbox" name="send_copy" id="id_send_copy"> <span class="helptext">Cochez si vous souhaitez obtenir une copie du mail envoyé.</span></p>
+                        <p>
+                            <label for="id_subject">Sujet :</label>
+                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" type="text" name="subject" maxlength="100" required id="id_subject">
+                        </p>
+                        <p>
+                            <label for="id_message">Message :</label>
+                            <textarea class="form-control flex-fill" name="message" cols="40" rows="10" required id="id_message"></textarea>
+                        </p>
+                        <p>
+                            <label for="id_sender">Votre adresse e-mail :</label>
+                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" type="email" name="sender" required id="id_sender">
+                        </p>
+                        <p>
+                            <label for="id_send_copy"></label>
+                            <input type="checkbox" name="send_copy" id="id_send_copy">
+                            <span class="helptext">Cochez si vous souhaitez obtenir une copie du mail envoyé.</span>
+                        </p>
                         <button class="btn btn-primary mx-auto" type="submit">Envoyer</button>
                         <!--<input type="submit" value="Submit" />-->
                     </form>

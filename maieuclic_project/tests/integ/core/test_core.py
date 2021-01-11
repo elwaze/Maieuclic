@@ -19,7 +19,7 @@ class CoreTestCase(GeneralTestCase):
         Tests the contact form sends email to maieuclic.
         """
         # Find the form element
-        subject = self.selenium.find_element_by_name("subject")
+        subject = self.selenium.find_element_by_id("id_subject")
         message = self.selenium.find_element_by_name("message")
         sender = self.selenium.find_element_by_name("sender")
         send_copy = self.selenium.find_element_by_name("send_copy")
