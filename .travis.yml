@@ -5,13 +5,13 @@ python:
 before_script:
   - coverage erase
 
-env: DJANGO_SETTINGS_MODULE="maieuclic_project.settings.test_settings"
+env: DJANGO_SETTINGS_MODULE="maieuclic_project.settings.travis_settings"
 
 services:
   - postgresql
 
 script:
-  - coverage run maieuclic_project/manage.py test tests --settings=maieuclic_project.settings.test_settings
+  - coverage run maieuclic_project/manage.py test tests --settings=maieuclic_project.settings.travis_settings
 
 # safelist
 branches:

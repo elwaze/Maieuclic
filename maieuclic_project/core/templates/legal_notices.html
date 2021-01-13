@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% block title %}Maïeuclic{% endblock %}
+
+{% block content %}
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="mx-auto my-0 text-uppercase">Mentions Légales</h1>
+                <br>
+                <p>Site réalisé par
+                    <a href="https://github.com/elwaze" title="GitHub">Eloïse Lamontagne</a>
+                    <br>
+                </p>
+                <p>Template Bootstrap :
+                    <a href="https://startbootstrap.com/themes/grayscale/" title="Bootstrap">Start Bootstrap Grayscale</a>
+                    <br>
+                </p>
+                <p> Site hébergé par
+                    <a href="http://digitalocean.com" title="DigitalOcean">DigitalOcean</a>
+                    <br>
+                </p>
+                <p> Logo su site :
+                  <a href="https://siane link" title="Siane">Siane</a>
+                  <br>
+              </p>
+            </div>
+        </div>
+    </header>
+
+{% endblock %}
