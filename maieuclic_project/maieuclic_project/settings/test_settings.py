@@ -106,6 +106,14 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5433',
         'CONN_MAX_AGE': 500,
+    },
+    'travis': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 # Password validation
