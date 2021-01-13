@@ -5,7 +5,7 @@ python:
 before_script:
   - coverage erase
 
-env: DJANGO_SETTINGS_MODULE="maieuclic_project.settings.test_settings"
+env: DJANGO_SETTINGS_MODULE="maieuclic_project.settings.travis_settings"
 
 services:
   - postgresql
