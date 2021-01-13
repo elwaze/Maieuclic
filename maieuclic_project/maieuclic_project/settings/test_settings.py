@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+# email confirmation settings
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'maieuclic@gmail.com'
+EMAIL_HOST_PASSWORD = 'maieuclicMdp!'
+EMAIL_PORT = 587
 
 # Application definition
 
@@ -80,18 +86,17 @@ WSGI_APPLICATION = 'maieuclic_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = { # travis DB
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
+        'ENGINE': 'django.db.backends.postgresql',  # 'postgresql', 'mysql', 'sqlite3', 'oracle'.
+        'NAME': 'maieuclic',
         'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'PASSWORD': 'mvtm,js1np',
+        'HOST': '127.0.0.1',
+        'PORT': '5433',
+        'CONN_MAX_AGE': 500,
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
