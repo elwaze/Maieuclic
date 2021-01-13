@@ -30,8 +30,10 @@ def contact(request):
         sender = form.cleaned_data['sender']
         send_copy = form.cleaned_data['send_copy']
         to_email = ["maieuclic@gmail.com"]
+        # add the sender e-main in recipients if send_copy has been clicked
         if send_copy:
             to_email.append(sender)
+
         email_content = render_to_string('contact_email.html', context)
         alt_text_content = "Bonjour, Le message suivant a été envoyé à Maïeuclic : {}".format(message)
         email = EmailMultiAlternatives(
@@ -41,12 +43,3 @@ def contact(request):
         response = email.send()
         sending = True
     return render(request, 'contact.html', locals())
-
-# from django.core.mail import EmailMultiAlternatives
-#
-# subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
-# text_content = 'This is an important message.'
-# html_content = '<p>This is an <strong>important</strong> message.</p>'
-# msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-# msg.attach_alternative(html_content, "text/html")
-# msg.send()
