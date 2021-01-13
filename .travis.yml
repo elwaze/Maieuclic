@@ -11,7 +11,7 @@ services:
   - postgresql
 
 script:
-  - coverage run maieuclic_project/manage.py test tests --settings=maieuclic_project.settings.test_settings
+  - coverage run maieuclic_project/manage.py test tests --settings=maieuclic_project.settings.travis_settings
 
 # safelist
 branches:
