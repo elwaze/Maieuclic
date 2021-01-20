@@ -13,7 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 PASSWORD = 'connection'
 FIRST_NAME = 'Selenium'
-USERNAME = 'selenium@gmail.com'
+EMAIL = 'selenium@gmail.com'
 
 
 class GeneralTestCase(LiveServerTestCase):
