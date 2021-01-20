@@ -9,7 +9,7 @@ class CoreTestCase(GeneralTestCase):
         super().setUp()
 
         self.home_url = '{}/home'.format(self.live_server_url)
-        self.legals_url = '{}/home/legal'.format(self.live_server_url)
+        self.legals_url = '{}/home/legal_notices'.format(self.live_server_url)
         self.contact_url = '{}/home/contact'.format(self.live_server_url)
         self.sender = "selenium@gmail.com"
         self.subject_filling = "test"
