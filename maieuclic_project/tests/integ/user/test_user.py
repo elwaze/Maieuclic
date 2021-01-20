@@ -35,7 +35,10 @@ class AccountTestCase(GeneralTestCase):
             pwd_confirm = ""
 
         signup = self.selenium.find_element_by_id('signup')
-        signin = self.selenium.find_element_by_id('signin')
+        try:
+            signin = self.selenium.find_element_by_id('signin')
+        except Exception:
+            singin = ""
 
         return email, password, pwd_confirm, signup, signin
 
