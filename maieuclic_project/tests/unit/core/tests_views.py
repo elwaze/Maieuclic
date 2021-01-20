@@ -30,6 +30,6 @@ class TestCore(TestCase):
         Getting the contact page should return a http code = 200.
         """
 
-        response = self.client.get(reverse('legal'))
+        response = self.client.get(reverse('contact'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('core/contact.html')

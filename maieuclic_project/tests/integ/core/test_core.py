@@ -8,9 +8,35 @@ class CoreTestCase(GeneralTestCase):
     def setUp(self):
         super().setUp()
 
+        self.home_url = '{}/home'.format(self.live_server_url)
+        self.legals_url = '{}/home/legal_notices'.format(self.live_server_url)
         self.contact_url = '{}/home/contact'.format(self.live_server_url)
         self.sender = "selenium@gmail.com"
         self.subject_filling = "test"
+
+    def test_home(self):
+        self.selenium.get(self.home_url)
+        # check the returned result
+        self.assertIn(
+            'Trouvez une mutation en quelques clics.',
+            self.selenium.page_source)
+        self.assertEqual(
+            self.selenium.current_url,
+            self.home_url.format(self.live_server_url),
+            "urlfound: " + self.selenium.current_url
+        )
+
+    def test_legals(self):
+        self.selenium.get(self.legals_url)
+        # check the returned result
+        self.assertIn(
+            'Mentions Légales',
+            self.selenium.page_source)
+        self.assertEqual(
+            self.selenium.current_url,
+            self.legals_url.format(self.live_server_url),
+            "urlfound: " + self.selenium.current_url
+        )
 
     def contact_basis(self, copy, subject_filling=""):
         self.selenium.get(self.contact_url)
