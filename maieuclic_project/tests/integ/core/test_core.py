@@ -30,7 +30,7 @@ class CoreTestCase(GeneralTestCase):
         self.selenium.get(self.legals_url)
         # check the returned result
         self.assertIn(
-            'MENTIONS',
+            'Mentions Légales',
             self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
