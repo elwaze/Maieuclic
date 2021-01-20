@@ -31,7 +31,7 @@ class TestUserViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='maieuclic_project/signin.html')
 
-    def test_user_login(self):
+    def test_user_signin(self):
         """
         The connection with valid information should return a http code = 200.
         """
@@ -50,8 +50,8 @@ class TestUserViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='user/my_account.html')
 
-    def test_user_logout(self):
-        response = self.client.get(reverse('logout'))
+    def test_user_signgout(self):
+        response = self.client.get(reverse('signout'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='core/home.html')
 
