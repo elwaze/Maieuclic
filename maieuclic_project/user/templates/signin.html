@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="mx-auto my-0 text-uppercase">Se connecter</h1>
+            </div>
+        </div>
+    </header>
+    <!-- About-->
+    <section class="about-section text-center" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 text-left text-50 mb-4 text-white" style=" padding-bottom: 10rem;">
+                    {% if error %}
+                    <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    Vous êtes connecté(e) !
+                    {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary mx-auto" type="submit">Se connecter</button>
+                    </form>
+                    {% endif %}
+                    <hr>
+                    <div class="col-lg-8 text-left text-50 mb-4 text-white" style=" padding-bottom: 10rem;">
+                        <form action="{% url 'signup' %}">
+                            <button class="btn btn-primary mx-auto" type="submit">Créer un compte</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <img class="img-fluid" src="assets/img/permut.png" alt="">
+        </div>
+    </section>
+
+{% endblock %}
