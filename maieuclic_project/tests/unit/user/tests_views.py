@@ -27,18 +27,18 @@ class TestUserViews(TestCase):
         Getting the connection page should return a http code = 200.
         """
 
-        response = self.client.get(reverse('login'))
+        response = self.client.get(reverse('signin'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(template_name='maieuclic_project/login.html')
+        self.assertTemplateUsed(template_name='maieuclic_project/signin.html')
 
     def test_user_login(self):
         """
         The connection with valid information should return a http code = 200.
         """
 
-        response = self.client.post(reverse('login'))
+        response = self.client.post(reverse('signin'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(template_name='user/login.html')
+        self.assertTemplateUsed(template_name='user/signin.html')
 
     def test_user_my_account(self):
         """
