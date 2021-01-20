@@ -97,6 +97,11 @@ DATABASES = {
         'CONN_MAX_AGE': 500,
     }
 }
+
+# custom auth user model
+AUTH_USER_MODEL = 'user.MaieuclicUser'
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

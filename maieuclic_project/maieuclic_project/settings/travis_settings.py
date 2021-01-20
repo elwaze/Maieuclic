@@ -82,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maieuclic_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -96,6 +95,10 @@ DATABASES = { # travis DB
         'PORT': '',
     }
 }
+
+# custom auth user model
+AUTH_USER_MODEL = 'user.MaieuclicUser'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
