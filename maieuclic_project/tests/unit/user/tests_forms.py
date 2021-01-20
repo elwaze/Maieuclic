@@ -28,7 +28,7 @@ class TestUserForms(TestCase):
         Tests if the user tries to create an account with valid values.
         """
         data = self.data
-        data['pwd_confirm'] = data['pwd']
+        data['pwd_confirm'] = data['password']
         form = SignupForm(data=self.data)
         self.assertEqual(self.email, form.clean_email)
         self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm)
@@ -45,4 +45,4 @@ class TestUserForms(TestCase):
         Tests if the confirmation password is different from the first password.
         """
         form = SignupForm(data=self.data)
-        self.assertRaises(ValidationError, form.clean_pwd_confirm, self)
+        self.assertRaises(ValidationError, form.clean_pwd_confirm)

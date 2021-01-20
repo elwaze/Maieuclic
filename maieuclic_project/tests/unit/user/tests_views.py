@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
-from maieuclic_project.user.models import MaieuclicUser
-from maieuclic_project.user.tokens import account_activation_token
+from user.models import MaieuclicUser
+from user.tokens import account_activation_token
 
 from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode

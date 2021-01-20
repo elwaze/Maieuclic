@@ -27,13 +27,13 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button class="btn btn-primary mx-auto" type="submit">Se connecter</button>
+                        <button class="btn btn-primary mx-auto" type="submit" id="signin">Se connecter</button>
                     </form>
                     {% endif %}
                     <hr>
                     <div class="col-lg-8 text-left text-50 mb-4 text-white" style=" padding-bottom: 10rem;">
                         <form action="{% url 'signup' %}">
-                            <button class="btn btn-primary mx-auto" type="submit">Créer un compte</button>
+                            <button class="btn btn-primary mx-auto" type="submit" id="signup">Créer un compte</button>
                         </form>
                     </div>
                 </div>

@@ -13,9 +13,9 @@ class SignupForm(SigninForm):
     # Form to create a new account.
     pwd_confirm = forms.CharField(label="Confirmation mot de passe", widget=forms.PasswordInput)
 
-    def clean_username(self):
+    def clean_email(self):
         # Checking username validity.
-        if MaieuclicUser.objects.filter(email=self.data['username']).exists():
+        if MaieuclicUser.objects.filter(email=self.data['email']).exists():
             raise ValidationError("Ce nom d'utilisateur existe déjà.")
         return self.data['email']
 

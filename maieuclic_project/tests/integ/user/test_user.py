@@ -34,22 +34,23 @@ class AccountTestCase(GeneralTestCase):
         except:
             pwd_confirm = ""
 
-        submit = self.selenium.find_element_by_xpath('//input[@type="submit"]')
+        signup = self.selenium.find_element_by_id('signup')
+        signin = self.selenium.find_element_by_id('signin')
 
-        return email, password, pwd_confirm, submit
+        return email, password, pwd_confirm, signup, signin
 
     def test_signup_ok(self):
         """
         Tests the user account creation with a valid form.
         """
-        email, password, pwd_confirm, submit = self.account_basis(self.signup_url)
+        email, password, pwd_confirm, signup, signin = self.account_basis(self.signup_url)
         # Fill the form with data
         email.send_keys('created.{}'.format(EMAIL))
         password.send_keys('created_{}'.format(PASSWORD))
         pwd_confirm.send_keys('created_{}'.format(PASSWORD))
 
         # submitting the form
-        submit.click()
+        signup.click()
 
         # check the returned result
         self.assertIn(
@@ -73,7 +74,7 @@ class AccountTestCase(GeneralTestCase):
         Tests the user account creation,
         when the confirmation password is different from the first password.
         """
-        email, password, pwd_confirm, submit = self.account_basis(self.signup_url)
+        email, password, pwd_confirm, signup, signin = self.account_basis(self.signup_url)
 
         # Fill the form with data
         email.send_keys('signup_diff_pwd@selenium.com')
@@ -81,7 +82,7 @@ class AccountTestCase(GeneralTestCase):
         pwd_confirm.send_keys('signup_diff_pwd')
 
         # submitting the form
-        submit.click()
+        signup.click()
 
         # check the returned result
         self.assertIn('veuillez entrer un mot de passe de confirmation identique', self.selenium.page_source)
@@ -90,14 +91,14 @@ class AccountTestCase(GeneralTestCase):
         """
         Tests the user signin with a wrong password.
         """
-        email, password, pwd_confirm, submit = self.account_basis(self.signin_url)
+        email, password, pwd_confirm, signup, signin = self.account_basis(self.signin_url)
 
         # Fill the form with data
         email.send_keys(EMAIL)
         password.send_keys('signin_wrong_pwd')
 
         # submitting the form
-        submit.click()
+        signin.click()
 
         # check the returned result
         self.assertIn('Utilisateur inconnu ou mauvais de mot de passe.', self.selenium.page_source)
@@ -106,14 +107,14 @@ class AccountTestCase(GeneralTestCase):
         """
         Tests the user signin with a wrong password.
         """
-        email, password, pwd_confirm, submit = self.account_basis(self.signin_url)
+        email, password, pwd_confirm, signup, signin = self.account_basis(self.signin_url)
 
         # Fill the form with data
         email.send_keys('user_not_known@test.com')
         password.send_keys('selenium_test')
 
         # submitting the form
-        submit.click()
+        signin.click()
 
         # check the returned result
         self.assertIn('Utilisateur inconnu ou mauvais de mot de passe.', self.selenium.page_source)
@@ -122,14 +123,14 @@ class AccountTestCase(GeneralTestCase):
         """
         Tests the user connection with a valid form.
         """
-        email, password, pwd_confirm, submit = self.account_basis(self.signin_url)
+        email, password, pwd_confirm, signup, signin = self.account_basis(self.signin_url)
 
         # Fill the form with data
         email.send_keys(EMAIL)
         password.send_keys(PASSWORD)
 
         # submitting the form
-        submit.click()
+        signin.click()
 
         # check the returned result
         self.assertIn('Bonjour', self.selenium.page_source)
