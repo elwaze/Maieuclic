@@ -1,5 +1,5 @@
 from django.core import mail
-from maieuclic_project.tests.integ.general_integ_tests import GeneralTestCase
+from ..general_integ_tests import GeneralTestCase
 
 
 class CoreTestCase(GeneralTestCase):

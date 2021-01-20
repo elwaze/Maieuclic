@@ -1,9 +1,9 @@
-from maieuclic_project.user.models import MaieuclicUser
+from user.models import MaieuclicUser
 
 from django.core.exceptions import ValidationError
 from django.test import TestCase, Client
 
-from maieuclic_project.user.forms import AccountForm
+from user.forms import SignupForm
 
 
 class TestUserForms(TestCase):
@@ -29,7 +29,7 @@ class TestUserForms(TestCase):
         """
         data = self.data
         data['pwd_confirm'] = data['pwd']
-        form = AccountForm(data=self.data)
+        form = SignupForm(data=self.data)
         self.assertEqual(self.email, form.clean_email)
         self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm)
 
@@ -37,12 +37,12 @@ class TestUserForms(TestCase):
         """
         Tests if the user tries to create an account with an already used username.
         """
-        form = AccountForm(data=self.data)
+        form = SignupForm(data=self.data)
         self.assertRaises(ValidationError, form.clean_email)
 
     def test_user_form_wrong_confirm_pwd(self):
         """
         Tests if the confirmation password is different from the first password.
         """
-        form = AccountForm(data=self.data)
+        form = SignupForm(data=self.data)
         self.assertRaises(ValidationError, form.clean_pwd_confirm, self)

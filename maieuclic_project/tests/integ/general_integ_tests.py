@@ -4,7 +4,7 @@ import json
 # from tests import TESTS_ROOT
 
 from django.test import LiveServerTestCase
-from django.contrib.auth.models import User
+from user.models import MaieuclicUser
 
 from selenium import webdriver
 from seleniumlogin import force_login
@@ -24,10 +24,10 @@ class GeneralTestCase(LiveServerTestCase):
     created_user = None
     login_required = True
 
-    # def setUp(self) -> None:
-    #     self.setup_fixtures()
-    #     if self.login_required:
-    #         force_login(self.created_user, self.selenium, self.live_server_url)
+    def setUp(self) -> None:
+        self.setup_fixtures()
+        if self.login_required:
+            force_login(self.created_user, self.selenium, self.live_server_url)
 
     @classmethod
     def setUpClass(cls):
@@ -39,11 +39,11 @@ class GeneralTestCase(LiveServerTestCase):
         cls.selenium.quit()
         super().tearDownClass()
 
-    # @classmethod
-    # def setup_fixtures(cls):
-    #     cls.created_user = User.objects.create_superuser(
-    #         username=USERNAME, password=PASSWORD, first_name=FIRST_NAME
-    #     )
+    @classmethod
+    def setup_fixtures(cls):
+        cls.created_user = MaieuclicUser.objects.create_superuser(
+            email=EMAIL, password=PASSWORD
+        )
     #
     #     # Product fixtures are ordered to ensure there will be substitutes
     #     # Order matters (nutriscore)

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from maieuclic_project.user.models import MaieuclicUser, MaieuclicUserManager
+from user.models import MaieuclicUser, MaieuclicUserManager
 
 
 class TestUser(TestCase):

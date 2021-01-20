@@ -1,5 +1,5 @@
-from maieuclic_project.tests.integ.general_integ_tests import EMAIL, PASSWORD
-from maieuclic_project.tests.integ.general_integ_tests import GeneralTestCase
+from ..general_integ_tests import EMAIL, PASSWORD
+from ..general_integ_tests import GeneralTestCase
 
 from django.core import mail
 import re
