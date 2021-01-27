@@ -35,6 +35,8 @@ EMAIL_HOST_USER = 'maieuclic@gmail.com'
 EMAIL_HOST_PASSWORD = 'maieuclicMdp!'
 EMAIL_PORT = 587
 
+SITE_LINK = 'http://127.0.0.1:8000'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -82,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maieuclic_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -96,6 +97,10 @@ DATABASES = { # travis DB
         'PORT': '',
     }
 }
+
+# custom auth user model
+AUTH_USER_MODEL = 'user.MaieuclicUser'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

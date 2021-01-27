@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block content %}
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="mx-auto my-0 text-uppercase">Créer un compte</h1>
+            </div>
+        </div>
+    </header>
+    <!-- About-->
+    <section class="about-section text-center" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 text-left text-50 mb-4 text-white" style=" padding-bottom: 10rem;">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary mx-auto" type="submit" id="signup">Créer mon compte</button>
+                </form>
+                <p>
+                    <br>
+                    <b>{{activation}}</b>
+                </p>
+            </div>
+            </div>
+            <img class="img-fluid" src="assets/img/permut.png" alt="">
+        </div>
+    </section>
+
+{% endblock %}
