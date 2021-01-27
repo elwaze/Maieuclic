@@ -57,8 +57,6 @@ class TestUserForms(TestCase):
             'password': self.password
         }
         form = SigninForm(data=data)
-        self.assertEqual(self.email, form.email)
-        self.assertEqual(self.password, form.password)
 
         # self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm)
 
