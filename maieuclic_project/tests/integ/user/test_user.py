@@ -2,6 +2,8 @@ from ..general_integ_tests import EMAIL, PASSWORD
 from ..general_integ_tests import GeneralTestCase
 
 from django.core import mail
+from django.template.loader import render_to_string
+
 import re
 
 
@@ -65,10 +67,11 @@ class AccountTestCase(GeneralTestCase):
         # check the email content
         self.assertEqual(mail.outbox[0].subject, 'Finalisez la création de votre compte Maieuclic')
         self.assertEqual(mail.outbox[0].recipients()[0], 'created.{}'.format(EMAIL))
-        # self.assertIn('Je confirme mon inscription', mail.outbox[0].alternatives[0])
+        mail_body = render_to_string(mail.outbox[0].alternatives[0])
+        self.assertIn('Je confirme mon inscription', mail_body)
 
         # check that the activation link works
-        link = re.split(r'href="', mail.outbox[0].alternatives[0])[1]
+        link = re.split(r'href="', mail_body)[1]
         link = re.split(r'">Je', link)[0]
         self.assertIn('/user/activate/', link)
 
