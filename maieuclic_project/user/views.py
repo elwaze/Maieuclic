@@ -29,7 +29,7 @@ def signin(request):
             if user:
                 # Connecting user
                 login(request, user)
-                return render(request, 'my_account.html', locals())
+                # return my_account(request)
             else:
                 # prompts an error
                 error = True

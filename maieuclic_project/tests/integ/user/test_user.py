@@ -136,16 +136,16 @@ class AccountTestCase(GeneralTestCase):
         signin.click()
 
         # check the returned result
-        self.assertIn('Bonjour', self.selenium.page_source)
+        self.assertIn('Vous êtes connecté(e) !', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
-            '{}/user/my_account'.format(self.live_server_url),
+            '{}/user/signin'.format(self.live_server_url),
             "urlfound: " + self.selenium.current_url
         )
 
         # logout at the end of the test, not to be logged in for next test
-        logout = self.selenium.find_element_by_xpath('//a[@href="/user/logout"]')
-        logout.click()
+        signout = self.selenium.find_element_by_xpath('//a[@href="/user/signout"]')
+        signout.click()
 
     # def test_change_my_account(self):
     #     pass
