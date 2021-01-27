@@ -57,7 +57,9 @@ class TestUserForms(TestCase):
             'password': self.password
         }
         form = SigninForm(data=data)
-        self.assertEqual(self.email, form.clean_email)
+        self.assertEqual(self.email, form.email)
+        self.assertEqual(self.password, form.password)
+
         # self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm)
 
     def test_user_signupform_same_email(self):

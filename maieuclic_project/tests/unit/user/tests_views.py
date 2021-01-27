@@ -75,26 +75,26 @@ class TestUserViews(TestCase):
         self.assertEqual(user.is_active, True)
         self.assertTemplateUsed(template_name='user/my_account.html')
 
-    def test_user_change_my_account(self):
-        """
-        Changing a field in the user's account page when the user is connected should return a http code = 200.
-        After that, the user data should have changed in the DB.
-        """
-        fields = {
-            'password': 'newpwd',
-            'first_name': 'newname',
-            'phone_number': '0600000000',
-            'email_authorization': True,
-            'phone_authorization': True
-        }
-        self.client.login(email=self.email, password=self.password)
-        for field in fields.keys():
-            response = self.client.get(reverse('change_my_account', kwargs={'field': field, 'value': fields[field]}))
-            self.assertEqual(response.status_code, 200)
-            self.assertTemplateUsed(template_name='user/my_account.html')
-
-    def test_user_delete_account(self):
-        self.client.login(email=self.email, password=self.password)
-        response = self.client.get(reverse('delete_account'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(template_name='core/home.html')
+    # def test_user_change_my_account(self):
+    #     """
+    #     Changing a field in the user's account page when the user is connected should return a http code = 200.
+    #     After that, the user data should have changed in the DB.
+    #     """
+    #     fields = {
+    #         'password': 'newpwd',
+    #         'first_name': 'newname',
+    #         'phone_number': '0600000000',
+    #         'email_authorization': True,
+    #         'phone_authorization': True
+    #     }
+    #     self.client.login(email=self.email, password=self.password)
+    #     for field in fields.keys():
+    #         response = self.client.get(reverse('change_my_account', kwargs={'field': field, 'value': fields[field]}))
+    #         self.assertEqual(response.status_code, 200)
+    #         self.assertTemplateUsed(template_name='user/my_account.html')
+    #
+    # def test_user_delete_account(self):
+    #     self.client.login(email=self.email, password=self.password)
+    #     response = self.client.get(reverse('delete_account'))
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(template_name='core/home.html')
