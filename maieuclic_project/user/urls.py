@@ -1,9 +1,12 @@
-from django.urls import re_path
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    re_path(r'^signin$', views.signin, name='signin'),
-    re_path(r'^signout$', views.signout, name='signout'),
-    re_path(r'^signup$', views.signup, name='signup'),
-    re_path(r'^my_account$', views.my_account, name='my_account')
+    path('signin', views.signin, name='signin'),
+    path('signout', views.signout, name='signout'),
+    path('signup', views.signup, name='signup'),
+    path('my_account', views.my_account, name='my_account'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('change_my_account', views.change_my_account, name='change_my_account'),
+    path('delete_account', views.delete_account, name='delete_account'),
 ]
