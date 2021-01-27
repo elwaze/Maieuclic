@@ -67,7 +67,7 @@ class AccountTestCase(GeneralTestCase):
         # check the email content
         self.assertEqual(mail.outbox[0].subject, 'Finalisez la création de votre compte Maieuclic')
         self.assertEqual(mail.outbox[0].recipients()[0], 'created.{}'.format(EMAIL))
-        mail_body = mail.outbox[0].alternatives[0]
+        mail_body = mail.outbox[0].alternatives[0][0]
         print(mail_body)
         self.assertIn('Je confirme mon inscription', mail_body)
 
