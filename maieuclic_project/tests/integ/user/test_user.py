@@ -65,7 +65,7 @@ class AccountTestCase(GeneralTestCase):
         # check the email content
         self.assertEqual(mail.outbox[0].subject, 'Finalisez la création de votre compte Maieuclic')
         self.assertEqual(mail.outbox[0].recipients()[0], 'created.{}'.format(EMAIL))
-        self.assertIn('Pour confirmer la création de votre compte Maieuclic, veuillez cliquer sur le lien suivant :', mail.outbox[0].alternatives[0])
+        self.assertIn('Je confirme mon inscription', mail.outbox[0].alternatives[0])
 
         # check that the activation link works
         link = re.split(r'href="', mail.outbox[0].alternatives[0])[1]
