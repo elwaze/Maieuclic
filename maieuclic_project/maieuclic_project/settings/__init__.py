@@ -35,6 +35,8 @@ EMAIL_HOST_USER = 'maieuclic@gmail.com'
 EMAIL_HOST_PASSWORD = 'maieuclicMdp!'
 EMAIL_PORT = 587
 
+SITE_LINK = 'http://127.0.0.1:8000'
+
 
 # Application definition
 

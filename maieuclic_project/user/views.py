@@ -3,12 +3,12 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from .models import MaieuclicUser
-from .forms import SigninForm, SignupForm
+from .forms import SigninForm, SignupForm, AccountForm
 from .tokens import account_activation_token
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 # Create your views here.
 
@@ -75,11 +75,15 @@ def signup(request):
                 'token': account_activation_token.make_token(user)
                 }
             email_content = render_to_string('confirmation_email.html', context)
-            to_email = form.cleaned_data.get("email")
-            email = EmailMessage(
-                subject, email_content, to=[to_email]
+            to_email = [form.cleaned_data.get("email")]
+            alt_text_content = "Bonjour, veuillez cliquer sur le lien suivant pour activer votre compte Maïeuclic : "
+
+            email = EmailMultiAlternatives(
+                subject, alt_text_content, 'do_not_reply@maieuclic.com', to_email
             )
+            email.attach_alternative(email_content, "text/html")
             response = email.send()
+            sending = True
             activation = 'Veuillez confirmer votre adresse email pour valider la création de votre compte Maieuclic'
 
             return render(request, 'signup.html', locals())
@@ -96,7 +100,24 @@ def my_account(request):
     """
     Getting the user's personal page.
     """
+    error = False
+    user = request.user
 
+    if request.method == "POST":
+        form = AccountForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user.phone = data['phone']
+            user.set_password(data['password'])
+            user.phone_authorization = data['phone_authorization']
+            user.mail_authorization = data['mail_authorization']
+            user.save()
+            return render(request, 'my_account.html', locals())
+
+        else:
+            error = True
+    else:
+        form = AccountForm()
     return render(request, 'my_account.html', locals())
 
 

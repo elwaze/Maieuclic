@@ -38,7 +38,7 @@ class AccountTestCase(GeneralTestCase):
         try:
             signin = self.selenium.find_element_by_id('signin')
         except Exception:
-            singin = ""
+            signin = ""
 
         return email, password, pwd_confirm, signup, signin
 
@@ -147,8 +147,8 @@ class AccountTestCase(GeneralTestCase):
         logout = self.selenium.find_element_by_xpath('//a[@href="/user/logout"]')
         logout.click()
 
-    def test_change_my_account(self):
-        pass
-
-    def test_delete_account(self):
-        pass
+    # def test_change_my_account(self):
+    #     pass
+    #
+    # def test_delete_account(self):
+    #     pass

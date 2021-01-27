@@ -44,16 +44,6 @@ class GeneralTestCase(LiveServerTestCase):
         cls.created_user = MaieuclicUser.objects.create_superuser(
             email=EMAIL, password=PASSWORD
         )
-    #
-    #     # Product fixtures are ordered to ensure there will be substitutes
-    #     # Order matters (nutriscore)
-    #     with open(os.path.join(TESTS_ROOT, './test_fixtures.json')) as fd:
-    #         fixtures = json.load(fd)
-    #
-    #     for category in fixtures:
-    #         instance, _ = Category.objects.get_or_create(name=category['name'])
-    #         for product in category['products']:
-    #             _ = Product.objects.get_or_create(category=instance, **product)
 
     @classmethod
     def setup_selenium_driver(cls):
