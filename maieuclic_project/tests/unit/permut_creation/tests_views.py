@@ -17,7 +17,7 @@ class TestPermutCreationViews(TestCase):
         Getting the permut_search page should return a http code = 200.
         """
 
-        response = self.client.get(reverse('permut_search'))
+        response = self.client.post(reverse('permut_search'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='maieuclic_project/permut_search.html')
         # y a des trucs a rajouter...
