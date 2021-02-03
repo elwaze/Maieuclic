@@ -32,8 +32,9 @@ class TestUserForms(TestCase):
             'email': self.signup_email,
             'password': self.password
         }
-        form = SigninForm(data=data)
-        self.assertRaises(ValidationError)
+
+        with self.assertRaises(ValidationError):
+            form = SigninForm(data=data)
 
     def test_user_wrong_pwd(self):
         """
@@ -43,8 +44,8 @@ class TestUserForms(TestCase):
             'email': self.email,
             'password': self.pwd_confirm
         }
-        form = SigninForm(data=data)
-        self.assertRaises(ValidationError)
+        with self.assertRaises(ValidationError):
+            form = SigninForm(data=data)
 
     def test_user_valid_signinform(self):
         """
@@ -58,7 +59,7 @@ class TestUserForms(TestCase):
         }
         form = SigninForm(data=data)
 
-        # self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm)
+        self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm())
 
     def test_user_signupform_same_email(self):
         """
@@ -94,5 +95,6 @@ class TestUserForms(TestCase):
             'pwd_confirm': self.password
         }
         form = SignupForm(data=data)
-        # self.assertEqual(self.email, form.clean_email)
-        # self.assertEqual(self.password, form.clean_pwd_confirm)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(self.email, form.clean_email())
+        self.assertEqual(self.password, form.clean_pwd_confirm())

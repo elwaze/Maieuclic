@@ -77,7 +77,9 @@ def signup(request):
                 }
             email_content = render_to_string('confirmation_email.html', context)
             to_email = [form.cleaned_data.get("email")]
-            alt_text_content = "Bonjour, veuillez cliquer sur le lien suivant pour activer votre compte Maïeuclic : "
+            alt_text_content = ("Bonjour, veuillez copier le lien suivant pour activer votre compte Maïeuclic "
+                                "et le coller dans votre navigateur: {}user/activate/{}/{}/").format(
+                context['domain'], context['uid'], context['token'])
 
             email = EmailMultiAlternatives(
                 subject, alt_text_content, 'do_not_reply@maieuclic.com', to_email
