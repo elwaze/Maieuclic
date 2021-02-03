@@ -48,7 +48,7 @@ class TestPlaceForms(TestCase):
             'zipcode': self.left_place['zipcode']
         }
         form = PlaceLeftForm(data=data)
-        # what should I check now ?
+        self.assertTrue(form.is_valid())
 
     def test_search_place_form(self):
         """
@@ -59,4 +59,4 @@ class TestPlaceForms(TestCase):
             'zipcode': self.searched_place['zipcode']
         }
         form = PlaceSearchedForm(data=data)
-        # what should I check now ?
+        self.assertTrue(form.is_valid())
