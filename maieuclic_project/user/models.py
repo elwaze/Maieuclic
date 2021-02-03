@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 
+from ..permut_creation.models import Place
+
 
 # Create your models here.
 class MaieuclicUserManager(BaseUserManager):
@@ -33,6 +35,11 @@ class MaieuclicUserManager(BaseUserManager):
             raise ValueError(_('Superuser must have is_superuser=True.'))
         return self.create_user(email, password, **extra_fields)
 
+    def save_place_left(self, email, place_id):
+        user = MaieuclicUser.objects.get(email=email)
+        user.place_id = place_id
+        user.save()
+
 
 class MaieuclicUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
@@ -41,7 +48,7 @@ class MaieuclicUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=10)
     user_state = models.BooleanField(default=False)
-    # place_id = models.ForeignKey(Place, on_delete=models.SET_NULL)
+    place_id = models.ForeignKey(Place, on_delete=models.SET_NULL)
     email_authorization = models.BooleanField(default=False)
     phone_authorization = models.BooleanField(default=False)
 
