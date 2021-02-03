@@ -67,7 +67,7 @@ class TestPermutSearch(GeneralTestPlace):
     """
     def setUp(self):
         self.place_id = Place.objects.get(city=self.searched_place['city']).place_id
-        self.model = PermutSearch.objects.create(place_id=self.place_id, email=self.email)
+        self.model = PermutSearch.objects.save_searched_place(self.place_id, self.email)
 
     def test_permut_search_objects(self):
         self.assertIsInstance(PermutSearch.objects, PermutSearchManager)
