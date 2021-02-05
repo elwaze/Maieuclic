@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase, Client
 
-from permut_creation.forms import PlaceLeftForm, PlaceSearchedForm
+from permut_creation.forms import PlaceForm
 from permut_creation.models import Place, PermutSearch
 from user.models import MaieuclicUser
 
@@ -19,14 +19,12 @@ class TestPlaceForms(TestCase):
         self.left_place = {
             'city': 'Voiron',
             'zipcode': '38500',
-            'hospital_name': "Centre Hospitalier de Voiron",
             'lat': 45.36939719281337,
             'lng': 5.595415411643872
         }
         Place.objects.create(
             city=self.left_place['city'],
             zipcode=self.left_place['zipcode'],
-            hospital_name=self.left_place['hospital_name'],
             lat=self.left_place['lat'],
             lng=self.left_place['lng']
         )
@@ -39,24 +37,24 @@ class TestPlaceForms(TestCase):
             zipcode=self.searched_place['zipcode'],
         )
 
-    def test_leave_place_form(self):
+    def test_place_form(self):
         """
-        Tests if the user tries to create place left.
+        Tests if the user tries to create place left or searched.
         """
         data = {
             'city': self.left_place['city'],
             'zipcode': self.left_place['zipcode']
         }
-        form = PlaceLeftForm(data=data)
+        form = PlaceForm(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_search_place_form(self):
-        """
-        Tests if the user tries to create searched place.
-        """
-        data = {
-            'city': self.searched_place['city'],
-            'zipcode': self.searched_place['zipcode']
-        }
-        form = PlaceSearchedForm(data=data)
-        self.assertTrue(form.is_valid())
+    # def test_search_place_form(self):
+    #     """
+    #     Tests if the user tries to create searched place.
+    #     """
+    #     data = {
+    #         'city': self.searched_place['city'],
+    #         'zipcode': self.searched_place['zipcode']
+    #     }
+    #     form = PlaceForm(data=data)
+    #     self.assertTrue(form.is_valid())

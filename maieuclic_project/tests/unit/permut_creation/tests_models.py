@@ -11,7 +11,6 @@ class GeneralTestPlace(TestCase):
         self.left_place = {
             'city': 'Voiron',
             'zipcode': '38500',
-            'hospital_name': "Centre Hospitalier de Voiron",
             'lat': 45.36939719281337,
             'lng': 5.595415411643872
         }
@@ -22,7 +21,6 @@ class GeneralTestPlace(TestCase):
         Place.objects.create(
             city=self.left_place['city'],
             zipcode=self.left_place['zipcode'],
-            hospital_name=self.left_place['hospital_name'],
             lat=self.left_place['lat'],
             lng=self.left_place['lng']
         )
@@ -48,7 +46,6 @@ class TestPlace(GeneralTestPlace):
         place = Place.objects.get(city=self.left_place['city'])
         self.assertEqual(self.left_place['city'], place.name)
         self.assertEqual(self.left_place['zipcode'], place.zipcode)
-        self.assertEqual(self.left_place['hospital_name'], place.hospital_name)
         self.assertEqual(self.left_place['lat'], place.lat)
         self.assertEqual(self.left_place['lng'], place.lng)
 
