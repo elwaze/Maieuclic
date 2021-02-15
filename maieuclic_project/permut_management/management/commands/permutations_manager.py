@@ -86,11 +86,23 @@ class Command(BaseCommand):
             pass
         else:
             # enreg la permut
-            Permut.objects.create(users=users)
+            created_permut = Permut.objects.create(users=users)
             # send email to people involved in permutation
             self.send_email(permut)
             # enreg associations entre permut, user_s, place, user
-            UserPermutAssociation.objects.create()
+            index = 0
+            for element in permut:
+                index += 1
+                user_s = element[1]
+                user = permut[index - 2][1]
+                place = element[0]
+                linked_permut = created_permut.pk
+                UserPermutAssociation.objects.create(
+                    email_s=user_s,
+                    permut_id=linked_permut,
+                    place_id=place,
+                    email=user
+                )
 
     def send_email(self, permut):
         pass
