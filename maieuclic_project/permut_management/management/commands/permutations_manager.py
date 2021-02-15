@@ -89,7 +89,7 @@ class Command(BaseCommand):
             created_permut = Permut.objects.create(users=users)
             # send email to people involved in permutation
             self.send_email(permut)
-            # enreg associations entre permut, user_s, place, user
+            # save associations between permut, user_s, place, user
             index = 0
             for element in permut:
                 index += 1
@@ -105,4 +105,5 @@ class Command(BaseCommand):
                 )
 
     def send_email(self, permut):
+        # a la fin, passer la permut a notified
         pass
