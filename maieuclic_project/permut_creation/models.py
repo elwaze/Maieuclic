@@ -21,6 +21,7 @@ class Place(models.Model):
 
     objects = PlaceManager()
 
+    place_id = models.AutoField(primary_key=True)
     city = models.CharField('Ville')
     zipcode = models.CharField('Code Postal', max_length=5, validators=[MinLengthValidator(5)])
     lat = models.FloatField()
