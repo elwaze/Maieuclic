@@ -17,7 +17,7 @@ class Permut(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
 
 
-class UserPermutAssoc(models.Model):
+class UserPermutAssociation(models.Model):
     email_s = models.ForeignKey(MaieuclicUser, on_delete=models.CASCADE)
     permut_id = models.ForeignKey(Permut, on_delete=models.CASCADE)
     place_id = models.ForeignKey(Place, on_delete=models.CASCADE)

@@ -82,7 +82,7 @@ class Command(BaseCommand):
 
         permut_found = Permut.objects.filter(users__contains=users)
         print(permut_found)
-        if permut_found : # ya un truc a arranger la
+        if permut_found:  # ya un truc a arranger la
             pass
         else:
             # enreg la permut

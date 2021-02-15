@@ -19,13 +19,12 @@
 </header>
 <!-- Permut sections -->
 {% if permuts %}
-{% for permut in permuts %}
+{% for permutation in permuts %}
 <section class="page-section bg-secondary" id="permut">
     <div class="col-lg-12 text-center text-white">
         <p class="text-white-50 mb-4">
-            Poste à pourvoir : {{ permut.place }}
-            Coordonnées de la personne qui libère le poste : {{ permut.mail }} ; {{ permut.phone }}
-            Coordonnées de la personne à qui vous libérez votre poste : {{ permut.mail_s }} ; {{ permut.phone_s }}
+            Poste à pourvoir : {{ permutation.place }}
+            Coordonnées de la personne qui libère le poste : {{ permutation.mail }} ; {{ permutation.phone }}
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
