@@ -5,12 +5,15 @@ from django.template.loader import render_to_string
 
 from.forms import ContactForm
 
+from user.models import MaieuclicUser
+
 # Create your views here.
 
 
 # home
 def home(request):
-    return render(request, 'home.html')
+    open_jobs = MaieuclicUser.objects.filter(user_state__iexact=True).count()
+    return render(request, 'home.html', locals())
 
 
 # legal notices
