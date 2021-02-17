@@ -13,7 +13,7 @@ class PermutCreationTestCase(GeneralTestCase):
         # find the form element
         city = self.selenium.find_element_by_name("city")
         zipcode = self.selenium.find_element_by_name("zipcode")
-        save_left_place = self.selenium.find_element_by_id("save_left_place")
+        save_left_place = self.selenium.find_element_by_id("save_permut_leave")
         # Fill the form with data
         city.send_keys('Voiron')
         zipcode.send_keys('38500')
@@ -32,7 +32,7 @@ class PermutCreationTestCase(GeneralTestCase):
         # find the form element
         city = self.selenium.find_element_by_name("city")
         zipcode = self.selenium.find_element_by_name("zipcode")
-        save_searched_place = self.selenium.find_element_by_id("save_searched_place")
+        save_searched_place = self.selenium.find_element_by_id("save_permut_search")
         # Fill the form with data
         city.send_keys('Grenoble')
         zipcode.send_keys('38000')
