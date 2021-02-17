@@ -82,9 +82,7 @@ class Command(BaseCommand):
 
         permut_found = Permut.objects.filter(users__contains=users)
         print(permut_found)
-        if permut_found:  # ya un truc a arranger la
-            pass
-        else:
+        if not permut_found:
             # enreg la permut
             created_permut = Permut.objects.create(users=users)
             # send email to people involved in permutation
