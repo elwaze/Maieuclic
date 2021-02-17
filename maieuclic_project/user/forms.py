@@ -23,6 +23,7 @@ class SignupForm(SigninForm):
         # Checking that the confirmation password is the same than the first password.
         if self.data['password'] != self.data['pwd_confirm']:
             raise ValidationError("veuillez entrer un mot de passe de confirmation identique au mot de passe choisi. ")
+        return self.data['pwd_confirm']
 
 
 class AccountForm(forms.Form):

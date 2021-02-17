@@ -29,12 +29,13 @@ class TestUserForms(TestCase):
         Tests if the user tries to signin to an account with not known email.
         """
         data = {
-            'email': 'wrong_' + self.signup_email,
+            'email': self.signup_email,
             'password': self.password
         }
 
-        with self.assertRaises(ValidationError):
-            form = SigninForm(data=data)
+        self.assertRaises(ValidationError, SigninForm(data=data), self)
+        # with self.assertRaises(ValidationError):
+        #     form = SigninForm(data=data)
 
     def test_user_wrong_pwd(self):
         """
@@ -44,8 +45,10 @@ class TestUserForms(TestCase):
             'email': self.email,
             'password': self.pwd_confirm
         }
-        with self.assertRaises(ValidationError):
-            form = SigninForm(data=data)
+
+        self.assertRaises(ValidationError, SigninForm(data=data), self)
+        # with self.assertRaises(ValidationError):
+        #     form = SigninForm(data=data)
 
     def test_user_valid_signinform(self):
         """
