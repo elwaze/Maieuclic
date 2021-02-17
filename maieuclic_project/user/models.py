@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 
-# from permut_creation.models import Place
+from permut_creation.models import Place
 
 
 # Create your models here.
@@ -49,7 +49,7 @@ class MaieuclicUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(null=True, blank=True, max_length=50)
     phone_number = models.CharField(null=True, blank=True, max_length=10)
     user_state = models.BooleanField(default=False)
-    place_id = models.ForeignKey("Place", null=True, blank=True, on_delete=models.SET_NULL)
+    place_id = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
     email_authorization = models.BooleanField(default=False)
     phone_authorization = models.BooleanField(default=False)
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
 
-from user.models import MaieuclicUser
+# from user.models import MaieuclicUser
 
 # Create your models here.
 
@@ -22,7 +22,7 @@ class Place(models.Model):
     objects = PlaceManager()
 
     place_id = models.AutoField(primary_key=True)
-    city = models.CharField('Ville')
+    city = models.CharField('Ville', max_length=50)
     zipcode = models.CharField('Code Postal', max_length=5, validators=[MinLengthValidator(5)])
     lat = models.FloatField()
     lng = models.FloatField()
@@ -45,4 +45,4 @@ class PermutSearch(models.Model):
     objects = PermutSearchManager()
 
     place_id = models.ForeignKey(Place, on_delete=models.CASCADE)
-    email = models.ForeignKey(MaieuclicUser, on_delete=models.CASCADE)
+    email = models.ForeignKey('user.MaieuclicUser', on_delete=models.CASCADE)
