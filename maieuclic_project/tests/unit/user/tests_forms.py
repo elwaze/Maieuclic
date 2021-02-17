@@ -29,7 +29,7 @@ class TestUserForms(TestCase):
         Tests if the user tries to signin to an account with not known email.
         """
         data = {
-            'email': self.signup_email,
+            'email': 'wrong_' + self.signup_email,
             'password': self.password
         }
 
@@ -96,5 +96,5 @@ class TestUserForms(TestCase):
         }
         form = SignupForm(data=data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(self.email, form.clean_email())
+        self.assertEqual(self.signup_email, form.clean_email())
         self.assertEqual(self.password, form.clean_pwd_confirm())
