@@ -59,7 +59,7 @@ class TestUserForms(TestCase):
         }
         form = SigninForm(data=data)
 
-        self.assertEqual(self.pwd_confirm, form.clean_pwd_confirm())
+        self.assertTrue(form.is_valid())
 
     def test_user_signupform_same_email(self):
         """
