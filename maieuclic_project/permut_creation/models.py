@@ -24,8 +24,8 @@ class Place(models.Model):
     place_id = models.AutoField(primary_key=True)
     city = models.CharField('Ville', max_length=50)
     zipcode = models.CharField('Code Postal', max_length=5, validators=[MinLengthValidator(5)])
-    lat = models.FloatField(null=True, blank=True)
-    lng = models.FloatField(null=True, blank=True)
+    lat = models.DecimalField(max_digits=19, decimal_places=16, null=True, blank=True)
+    lng = models.DecimalField(max_digits=19, decimal_places=16, null=True, blank=True)
 
 
 class PermutSearchManager(models.Manager):
