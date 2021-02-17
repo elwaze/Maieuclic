@@ -49,7 +49,7 @@ class MaieuclicUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(null=True, blank=True, max_length=50)
     phone_number = models.CharField(null=True, blank=True, max_length=10)
     user_state = models.BooleanField(default=False)
-    place_id = models.ForeignKey(Place.place_id, null=True, blank=True, on_delete=models.SET_NULL)
+    place_id = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
     email_authorization = models.BooleanField(default=False)
     phone_authorization = models.BooleanField(default=False)
 

@@ -30,7 +30,7 @@ def permut_creation(request):
             city = leave_form.cleaned_data['city']
             zipcode = leave_form.cleaned_data['zipcode']
             place_left = Place.objects.create_place(city, zipcode)
-            MaieuclicUser.save_place_left(request.user.email, place_left.place_id)
+            MaieuclicUser.save_place_left(request.user.email, place_left)
         else:
             error = True
     else:

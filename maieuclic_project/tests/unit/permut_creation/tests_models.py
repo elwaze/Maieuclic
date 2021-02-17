@@ -53,7 +53,7 @@ class TestPlace(GeneralTestPlace):
         place = Place.objects.get(city=self.left_place['city'])
         MaieuclicUser.objects.save_place_left(self.email, place)
         user = MaieuclicUser.objects.get(email=self.email)
-        self.assertEqual(user.place_id, place.place_id)
+        self.assertEqual(user.place_id, place)
 
 
 class TestPermutSearch(GeneralTestPlace):
