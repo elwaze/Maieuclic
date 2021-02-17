@@ -1,8 +1,9 @@
 venv/
-.idea
+.idea*
 __pycache__/
 *.log
 .gitignore
 .coverage
 .coveragerc
 coverage_html_report/
+__pycache__
