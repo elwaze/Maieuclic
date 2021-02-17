@@ -44,14 +44,14 @@ class TestPlace(GeneralTestPlace):
 
     def test_place_columns(self):
         place = Place.objects.get(city=self.left_place['city'])
-        self.assertEqual(self.left_place['city'], place.name)
+        self.assertEqual(self.left_place['city'], place.city)
         self.assertEqual(self.left_place['zipcode'], place.zipcode)
         self.assertEqual(self.left_place['lat'], place.lat)
         self.assertEqual(self.left_place['lng'], place.lng)
 
     def test_place_associated_to_user(self):
         place = Place.objects.get(city=self.left_place['city'])
-        MaieuclicUser.objects.save_place_left(self.email, place.place_id)
+        MaieuclicUser.objects.save_place_left(self.email, place)
         user = MaieuclicUser.objects.get(email=self.email)
         self.assertEqual(user.place_id, place.place_id)
 
