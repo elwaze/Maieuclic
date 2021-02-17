@@ -12,7 +12,7 @@ from user.models import MaieuclicUser
 
 # home
 def home(request):
-    open_jobs = MaieuclicUser.objects.filter(user_state__iexact=True).count()
+    open_jobs = MaieuclicUser.objects.filter(user_state__exact=True).count()
     return render(request, 'home.html', locals())
 
 

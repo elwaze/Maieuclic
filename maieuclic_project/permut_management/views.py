@@ -14,7 +14,7 @@ def my_permut(request):
     user = request.user
 
     # get permuts associated to user
-    permuts_assoc = UserPermutAssociation.objects.filter(user_s__iexact=user)
+    permuts_assoc = UserPermutAssociation.objects.filter(email_s__exact=user)
     permuts = []
     for permut_assoc in permuts_assoc:
         # get the permut information
