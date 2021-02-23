@@ -18,15 +18,11 @@ class TestPlaceForms(TestCase):
         self.user = MaieuclicUser.objects.create_user(email=self.email, password=self.password)
         self.left_place = {
             'city': 'Voiron',
-            'zipcode': '38500',
-            'lat': 45.36939719281337,
-            'lng': 5.595415411643872
+            'zipcode': '38500'
         }
         Place.objects.create(
             city=self.left_place['city'],
-            zipcode=self.left_place['zipcode'],
-            lat=self.left_place['lat'],
-            lng=self.left_place['lng']
+            zipcode=self.left_place['zipcode']
         )
         self.searched_place = {
             'city': 'La Tronche',
