@@ -63,7 +63,7 @@ class TestPermutSearch(GeneralTestPlace):
     def setUp(self):
         GeneralTestPlace.setUp(self)
         self.user = MaieuclicUser.objects.get(email=self.email)
-        self.place_id = Place.objects.get(city=self.searched_place['city']).place_id
+        self.place_id = Place.objects.get(city=self.searched_place['city'])
         self.model = PermutSearch.objects.save_searched_place(self.place_id, self.user)
 
     def test_permut_search_objects(self):
