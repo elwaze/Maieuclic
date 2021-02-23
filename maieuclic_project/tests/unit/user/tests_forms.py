@@ -33,7 +33,7 @@ class TestUserForms(TestCase):
             'password': self.password
         }
         form = SigninForm(data=data)
-        self.assertRaises(ValidationError, form.cleaned_data)
+        self.assertRaises(ValidationError, form.clean_email)
         # with self.assertRaises(ValidationError):
         #     form = SigninForm(data=data)
 
@@ -46,7 +46,7 @@ class TestUserForms(TestCase):
             'password': self.pwd_confirm
         }
         form = SigninForm(data=data)
-        self.assertRaises(ValidationError, form.cleaned_data)
+        self.assertRaises(ValidationError, form.clean_password)
         # with self.assertRaises(ValidationError):
         #     form = SigninForm(data=data)
 
