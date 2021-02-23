@@ -32,8 +32,8 @@ class TestUserForms(TestCase):
             'email': self.signup_email,
             'password': self.password
         }
-
-        self.assertRaises(ValidationError, SigninForm(data=data), self)
+        form = SigninForm(data=data)
+        self.assertRaises(ValidationError, form.clean_email)
         # with self.assertRaises(ValidationError):
         #     form = SigninForm(data=data)
 
@@ -45,8 +45,8 @@ class TestUserForms(TestCase):
             'email': self.email,
             'password': self.pwd_confirm
         }
-
-        self.assertRaises(ValidationError, SigninForm(data=data), self)
+        form = SigninForm(data=data)
+        self.assertRaises(ValidationError, form.clean_password)
         # with self.assertRaises(ValidationError):
         #     form = SigninForm(data=data)
 
