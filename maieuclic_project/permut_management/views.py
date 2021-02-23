@@ -18,22 +18,31 @@ def my_permut(request):
     permuts = []
     for permut_assoc in permuts_assoc:
         # get the permut information
-        permut = Permut.objects.get(permut_id=permut_assoc.permut_id)
-        place = Place.objects.get(place_id=permut_assoc.place_id)
+        permut = Permut.objects.get(permut_id=permut_assoc.permut_id.permut_id)
+        place = Place.objects.get(place_id=permut_assoc.place_id.place_id)
         contact = MaieuclicUser.objects.get(email=permut_assoc.email)
         if contact.phone_authorization:
-            phone = contact.phone
+            try:
+                phone = contact.phone
+            except AttributeError:
+                phone = "La personne qui libère ce poste n'a pas renseigné son numéro de téléphone."
         else:
             phone = "La personne qui libère ce poste ne nous a pas autorisés à vous communiquer son numéro de téléphone."
         if contact.email_authorization:
             email = contact.email
         else:
+            print(contact.email)
             email = "La personne qui libère ce poste ne nous a pas autorisés à vous communiquer son adresse mail."
-        permutation = {}
-        permutation.place = "{} ({})".format(place.city, place.zipcode)
-        permutation.mail = email
-        permutation.phone = phone
-        permuts.append(permut)
+        permutation = {
+            'place': "{} ({})".format(place.city, place.zipcode),
+            'mail': email,
+            'phone': phone
+        }
+        print(permutation)
+        # permutation[place] = "{} ({})".format(place.city, place.zipcode)
+        # permutation.mail = email
+        # permutation.phone = phone
+        permuts.append(permutation)
         # Change permut_state if wished.
         if request.method == "POST":
             form = PermutStateForm(request.POST)
