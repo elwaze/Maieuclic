@@ -7,7 +7,7 @@ import logging
 
 from django.core.management.base import BaseCommand
 from user.models import MaieuclicUser
-from permut_creation.models import PermutSearch
+from permut_creation.models import PermutSearch, Place
 from permut_management.models import Permut, UserPermutAssociation
 
 
@@ -34,8 +34,11 @@ class Command(BaseCommand):
         for node in graph:
             permuts.append(self.find_permuts(graph, node, node))
         # # saving permutations
+        print('total permuts')
+        print(permuts)
         for permut in permuts:
-            self.save_permut(permut)
+            if permut != []:
+                self.save_permut(permut)
         # # sending emails to people involved in new permutations
         # for permut in newpermuts:
         #     self.send_email(permut)
@@ -45,22 +48,32 @@ class Command(BaseCommand):
         print('permutations successfully saved')
 
     def create_graph(self):
+        print('in create graph')
         graph = {}
 
         # get the users with user.user_state = True (a 1 place_id et n'est pas impliqué dans une permut en cours) and with at least 1 place searched
         users = MaieuclicUser.objects.filter(user_state=True)
         for user in users:
-            node = (user.email, user.place_id)
+            print('user')
+            print(user)
+            node = (user.email, user.place_id.place_id)
             graph[node] = []
-            search = PermutSearch.objects.filter(email=user.email)
+            search = PermutSearch.objects.filter(email=user)
+            # garder les searches pour lesquelles il y a un giver != user
             for element in search:
-                graph[node].append((element.place_id, element.email))
+                givers = MaieuclicUser.objects.filter(place_id__exact=element.place_id.place_id, user_state=True)
+                for giver in givers:
+                    graph[node].append((giver.email, giver.place_id.place_id))
+            # dans le node on met le giver pas le searcher
+            # for element in search:
+            #     graph[node].append((element.place_id.place_id, element.email.email))
             if graph[node] == []:
                 graph.pop(node)
-
+        print(graph)
         return graph
 
     def find_permuts(self, graph, start, end, path=None):
+        print('in find_permuts')
         if path is None:
             path = []
         path = path + [start]
@@ -68,36 +81,52 @@ class Command(BaseCommand):
             return path
         permuts = []
         for node in graph[start]:
-            if node not in path:
-                newpaths = self.find_permuts(graph, node, end, path)
+            print('node')
+            print(node)
+            if (node not in path) or (node == end):
+                newpaths = self.find_permuts(graph, node, end, path=path)
                 for newpath in newpaths:
                     permuts.append(newpath)
+        print('permuts')
+        print(permuts)
         return permuts
 
     def save_permut(self, permut):
-        users = set()
+        print('permut to be saved')
+        print(permut)
+        users = []
         for node in permut:
-            print(node)
-            users = users + node[1]
-
+            users.append(node[0])
+        print('users')
+        print(users)
         permut_found = Permut.objects.filter(users__contains=users)
         print(permut_found)
         if not permut_found:
-            # enreg la permut
+            print('no permut found')
+            # save permut
             created_permut = Permut.objects.create(users=users)
+            print(created_permut)
             # send email to people involved in permutation
             self.send_email(permut)
             # save associations between permut, user_s, place, user
             index = 0
             for element in permut:
                 index += 1
-                user_s = element[1]
-                user = permut[index - 2][1]
-                place = element[0]
-                linked_permut = created_permut.pk
+                if index == len(permut):
+                    index = -1
+                print(index)
+                user_s = MaieuclicUser.objects.get(email=element[0])
+                print('user_s')
+                print(user_s)
+                user = MaieuclicUser.objects.get(email=permut[index][0])
+                print(user)
+                print('user')
+                place = Place.objects.get(place_id=permut[index][1])
+                print(place)
+                print('place')
                 UserPermutAssociation.objects.create(
                     email_s=user_s,
-                    permut_id=linked_permut,
+                    permut_id=created_permut,
                     place_id=place,
                     email=user
                 )
