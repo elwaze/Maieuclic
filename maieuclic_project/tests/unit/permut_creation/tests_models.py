@@ -61,6 +61,7 @@ class TestPermutSearch(GeneralTestPlace):
     Tests the permut_search creation in DB.
     """
     def setUp(self):
+        GeneralTestPlace.setUp(self)
         self.place_id = Place.objects.get(city=self.searched_place['city']).place_id
         self.model = PermutSearch.objects.save_searched_place(self.place_id, self.email)
 
