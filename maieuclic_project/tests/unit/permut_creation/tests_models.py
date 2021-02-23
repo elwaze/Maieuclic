@@ -62,13 +62,14 @@ class TestPermutSearch(GeneralTestPlace):
     """
     def setUp(self):
         GeneralTestPlace.setUp(self)
+        self.user = MaieuclicUser.objects.get(email=self.email)
         self.place_id = Place.objects.get(city=self.searched_place['city']).place_id
-        self.model = PermutSearch.objects.save_searched_place(self.place_id, self.email)
+        self.model = PermutSearch.objects.save_searched_place(self.place_id, self.user)
 
     def test_permut_search_objects(self):
         self.assertIsInstance(PermutSearch.objects, PermutSearchManager)
 
     def test_permut_search_columns(self):
-        permut_search = PermutSearch.objects.get(place_id=self.place_id, email=self.email)
+        permut_search = PermutSearch.objects.get(place_id=self.place_id, email=self.user)
         self.assertEqual(self.email, permut_search.email)
         self.assertEqual(self.place_id, permut_search.place_id)
