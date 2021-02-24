@@ -71,5 +71,5 @@ class TestPermutSearch(GeneralTestPlace):
 
     def test_permut_search_columns(self):
         permut_search = PermutSearch.objects.get(place_id=self.place_id, email=self.user)
-        self.assertEqual(self.email, permut_search.email)
+        self.assertEqual(self.user, permut_search.email)
         self.assertEqual(self.place_id, permut_search.place_id)
