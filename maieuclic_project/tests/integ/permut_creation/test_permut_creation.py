@@ -6,7 +6,7 @@ class PermutCreationTestCase(GeneralTestCase):
     def setUp(self):
         super().setUp()
         # Opening the link we want to test
-        self.url = '{}/permut_creation/permut_search'.format(self.live_server_url)
+        self.url = '{}/permut_creation/leave_place'.format(self.live_server_url)
         self.selenium.get(self.url)
 
     def test_leave_place_ok(self):
@@ -24,7 +24,7 @@ class PermutCreationTestCase(GeneralTestCase):
         self.assertIn('Recherche de permutation', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
-            '{}/permut_creation/permut_search'.format(self.live_server_url),
+            '{}/permut_creation/leave_place'.format(self.live_server_url),
             "urlfound: " + self.selenium.current_url
         )
 
@@ -43,6 +43,6 @@ class PermutCreationTestCase(GeneralTestCase):
         self.assertIn('Recherche de permutation', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
-            '{}/permut_creation/permut_search'.format(self.live_server_url),
+            '{}/permut_creation/search_place'.format(self.live_server_url),
             "urlfound: " + self.selenium.current_url
         )
