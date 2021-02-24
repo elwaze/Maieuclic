@@ -32,8 +32,8 @@ class PermutCreationTestCase(GeneralTestCase):
         )
         # check that left place is well saved in DB
         left_place = MaieuclicUser.objects.get(email=self.created_user.email).place_id
-        self.assertEqual(left_place.city, city.upper())
-        self.assertEqual(left_place.zipcode, zipcode)
+        self.assertEqual(left_place.city, 'VOIRON')
+        self.assertEqual(left_place.zipcode, '38500')
 
     def test_searched_place_ok(self):
         # find the form element
@@ -54,6 +54,6 @@ class PermutCreationTestCase(GeneralTestCase):
             "urlfound: " + self.selenium.current_url
         )
         # check that searched place is saved in DB
-        searched_place = PermutSearch.objects.get(email=self.created_user.email).place_id
-        self.assertEqual(searched_place.city, city.upper())
-        self.assertEqual(searched_place.zipcode, zipcode)
+        searched_place = PermutSearch.objects.get(email=self.created_user.email.email).place_id
+        self.assertEqual(searched_place.city, 'GRENOBLE')
+        self.assertEqual(searched_place.zipcode, '38000')
