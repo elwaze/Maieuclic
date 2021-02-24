@@ -10,7 +10,7 @@ class TestPermuts(TestCase):
     """Tests permuts creation in DB."""
     def setUp(self):
         self.users = []
-        with open('tests/test_fixtures.json') as fd:
+        with open('maieuclic_project/tests/test_fixtures.json') as fd:
             fixtures = json.load(fd)
         for user in fixtures["users"]:
             self.users.append(user["email"])
@@ -37,7 +37,7 @@ class TestUserPermutAssociation(TestCase):
     def setUp(self):
         # get users from json fixture
         self.users = []
-        with open('tests/test_fixtures.json') as fd:
+        with open('maieuclic_project/tests/test_fixtures.json') as fd:
             fixtures = json.load(fd)
         for user in fixtures["users"]:
             print("user")
