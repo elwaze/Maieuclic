@@ -54,6 +54,6 @@ class PermutCreationTestCase(GeneralTestCase):
             "urlfound: " + self.selenium.current_url
         )
         # check that searched place is saved in DB
-        searched_place = PermutSearch.objects.get(email=self.created_user.email.email).place_id
+        searched_place = PermutSearch.objects.get(email=self.created_user).place_id
         self.assertEqual(searched_place.city, 'GRENOBLE')
         self.assertEqual(searched_place.zipcode, '38000')
