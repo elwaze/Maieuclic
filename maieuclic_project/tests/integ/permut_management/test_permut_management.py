@@ -11,7 +11,7 @@ class PermutManagementTestCase(GeneralTestCase):
 
     def test_view_permuts_ok(self):
         # check the returned result
-        self.assertIn('Mes permutations possibles', self.selenium.page_source)
+        self.assertIn('Mes permuts possibles', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
             '{}/permut_management/my_permut'.format(self.live_server_url),

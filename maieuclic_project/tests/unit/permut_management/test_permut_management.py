@@ -8,8 +8,9 @@ from permut_management.models import Permut, UserPermutAssociation
 
 class TestCommand(TestCase):
     def setUp(self):
-        self.command = Command()
-        self.user1 = {
-            "email": "user1@maieuclic.com",
-
-        }
+        pass
+        # self.command = Command()
+        # self.user1 = {
+        #     "email": "user1@maieuclic.com",
+        #
+        # }

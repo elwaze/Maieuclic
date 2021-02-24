@@ -55,6 +55,9 @@ def permut_creation(request):
     else:
         search_form = PlaceForm(prefix="search")
         try:
+            # boucle for pour tous les places + 1
+            # ajouter id dans le form avec id de la recherche en DB
+            # cf formset
             place_searched = PermutSearch.objects.filter(email=request.user)[0].place_id
             print('place_searched')
             print(place_searched)
@@ -74,3 +77,5 @@ def permut_creation(request):
         except AttributeError:
             pass
     return render(request, 'permut_search.html', locals())
+
+# faire 2 vues diff
