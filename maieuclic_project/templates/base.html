@@ -29,7 +29,7 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="{% url 'homepage' %}">
-                    <img src="{% static 'img/logo_maieuclic.png' %}" alt="logo" id="logo" width="50px">
+                    <img src="{% static 'assets/img/logo_maieuclic.svg' %}" alt="logo" id="logo" width="130px">
                     Maïeuclic
                 </a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,12 +52,12 @@
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="{% url 'my_permut' %}">
-                                <img src="{% static 'assets/img/logo-permut.png' %}" alt="Mes permutations" id="my_permut" width="29px">
+                                <img src="{% static 'assets/img/logo-permut.svg' %}" alt="Mes permutations" id="my_permut" width="60px">
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="{% url 'permut_search' %}">
-                                <img src="{% static 'assets/img/logo-search.png' %}" alt="Rechercher une permutation" id="permut_search" width="29px">
+                                <img src="{% static 'assets/img/logo-search.svg' %}" alt="Rechercher une permutation" id="permut_search" width="60px">
                             </a>
                         </li>
                         <li class="nav-item">
