@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from permut_creation.models import Place, PermutSearch
+from user.models import MaieuclicUser
 
 
 class TestPermutCreationViews(TestCase):
@@ -10,14 +11,19 @@ class TestPermutCreationViews(TestCase):
     """
 
     def setUp(self):
-        pass
+        self.email = 'test@gmail.com'
+        self.password = 'test'
+        self.client = Client()
+        self.user = MaieuclicUser.objects.create_user(email=self.email, password=self.password)
+        self.user.is_active = True
+        self.user.save()
 
     def test_permut_search_page(self):
         """
         Getting the permut_search page should return a http code = 200.
         """
-
-        response = self.client.post(reverse('search_place'))
+        self.client.login(email=self.email, password=self.password)
+        response = self.client.get(reverse('search_place'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='maieuclic_project/permut_search.html')
         # y a des trucs a rajouter...
