@@ -6,50 +6,6 @@ from user.models import MaieuclicUser
 # Create your views here.
 
 
-def permut_creation(request):
-    error = False
-    if request.method == "POST":
-        search_form = PlaceForm(request.POST, prefix="search")
-        if search_form.is_valid():
-            city = search_form.cleaned_data['city']
-            zipcode = search_form.cleaned_data['zipcode']
-            place = Place.objects.create_place(city, zipcode)[0]
-            place_searched = PermutSearch.objects.save_searched_place(place, request.user)
-
-            return render(request, 'permut_search.html', locals())
-        else:
-            error = True
-
-        leave_form = PlaceForm(request.POST, prefix="leave")
-        if leave_form.is_valid():
-            city = leave_form.cleaned_data['city']
-            zipcode = leave_form.cleaned_data['zipcode']
-            place_left = Place.objects.create_place(city, zipcode)[0]
-            MaieuclicUser.objects.save_place_left(request.user.email, place_left)
-            return render(request, 'permut_search.html', locals())
-
-        else:
-            error = True
-
-    else:
-        search_form = PlaceForm(prefix="search")
-        try:
-            place_searched = PermutSearch.objects.filter(email=request.user)[0].place_id
-            search_form.fields['city'].initial = place_searched.city
-            search_form.fields['zipcode'].initial = place_searched.zipcode
-        except IndexError:
-            pass
-
-        leave_form = PlaceForm(prefix="leave")
-        try:
-            place_left = Place.objects.get(pk=request.user.place_id.place_id)
-            leave_form.fields['city'].initial = place_left.city
-            leave_form.fields['zipcode'].initial = place_left.zipcode
-        except AttributeError:
-            pass
-    return render(request, 'permut_search.html', locals())
-
-
 def leave_place(request):
     error = False
     if request.method == "POST":
