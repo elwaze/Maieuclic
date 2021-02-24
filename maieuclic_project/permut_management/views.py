@@ -31,17 +31,12 @@ def my_permut(request):
         if contact.email_authorization:
             email = contact.email
         else:
-            print(contact.email)
             email = "La personne qui libère ce poste ne nous a pas autorisés à vous communiquer son adresse mail."
         permutation = {
             'place': "{} ({})".format(place.city, place.zipcode),
             'mail': email,
             'phone': phone
         }
-        print(permutation)
-        # permutation[place] = "{} ({})".format(place.city, place.zipcode)
-        # permutation.mail = email
-        # permutation.phone = phone
         permuts.append(permutation)
         # Change permut_state if wished.
         if request.method == "POST":
@@ -65,4 +60,6 @@ def my_permut(request):
                 error = True
         else:
             form = PermutStateForm()
+            form.fields['permut_state'].initial = permut.permut_state
+
     return render(request, 'my_permut.html', locals())
