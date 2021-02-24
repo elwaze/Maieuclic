@@ -3,17 +3,17 @@
     {
       "email": "user1@maieuclic.com",
       "password": "password1",
-      "place_id": ""
+      "place_id": 1
     },
     {
       "email": "user2@maieuclic.com",
       "password": "password2",
-      "place_id": ""
+      "place_id": 2
     },
     {
       "email": "user3@maieuclic.com",
       "password": "password3",
-      "place_id": ""
+      "place_id": 3
     }
   ],
   "permuts": [
