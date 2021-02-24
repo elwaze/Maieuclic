@@ -33,9 +33,10 @@ class TestUserForms(TestCase):
             'password': self.password
         }
         form = SigninForm(data=data)
-        self.assertRaises(ValidationError, form.clean_email)
-        # with self.assertRaises(ValidationError):
-        #     form = SigninForm(data=data)
+        self.assertTrue(form.is_valid())
+
+        with self.assertRaises(MaieuclicUser.DoesNotExist):
+            MaieuclicUser.objects.get(email=form.cleaned_data["email"])
 
     def test_user_wrong_pwd(self):
         """
@@ -46,9 +47,9 @@ class TestUserForms(TestCase):
             'password': self.pwd_confirm
         }
         form = SigninForm(data=data)
-        self.assertRaises(ValidationError, form.clean_password)
-        # with self.assertRaises(ValidationError):
-        #     form = SigninForm(data=data)
+        self.assertTrue(form.is_valid())
+        with self.assertRaises(MaieuclicUser.DoesNotExist): # si fonctionne pas, faire un filter et liste retournée doit etre nulle
+            MaieuclicUser.objects.get(email=form.cleaned_data["email"], password=form.cleaned_data["password"])
 
     def test_user_valid_signinform(self):
         """
