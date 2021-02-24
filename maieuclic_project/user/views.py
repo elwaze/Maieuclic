@@ -77,7 +77,9 @@ def signup(request):
                 }
             email_content = render_to_string('confirmation_email.html', context)
             to_email = [form.cleaned_data.get("email")]
-            alt_text_content = "Bonjour, veuillez cliquer sur le lien suivant pour activer votre compte Maïeuclic : "
+            alt_text_content = ("Bonjour, veuillez copier le lien suivant pour activer votre compte Maïeuclic "
+                                "et le coller dans votre navigateur: {}user/activate/{}/{}/").format(
+                context['domain'], context['uid'], context['token'])
 
             email = EmailMultiAlternatives(
                 subject, alt_text_content, 'do_not_reply@maieuclic.com', to_email
@@ -108,10 +110,11 @@ def my_account(request):
         form = AccountForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user.phone = data['phone']
-            user.set_password(data['password'])
+            user.phone_number = data['phone_number']
+            user.first_name = data['first_name']
+            #user.set_password(data['password'])
             user.phone_authorization = data['phone_authorization']
-            user.mail_authorization = data['mail_authorization']
+            user.email_authorization = data['email_authorization']
             user.save()
             return render(request, 'my_account.html', locals())
 
@@ -119,6 +122,11 @@ def my_account(request):
             error = True
     else:
         form = AccountForm()
+        form.fields['phone_number'].initial = user.phone_number
+        form.fields['first_name'].initial = user.first_name
+        form.fields['phone_authorization'].initial = user.phone_authorization
+        form.fields['email_authorization'].initial = user.email_authorization
+
     return render(request, 'my_account.html', locals())
 
 

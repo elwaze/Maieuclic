@@ -44,7 +44,8 @@ class TestUserViews(TestCase):
         """
         Getting the user's account page when the user is connected should return a http code = 200.
         """
-
+        self.user.is_active = True
+        self.user.save()
         self.client.login(email=self.email, password=self.password)
         response = self.client.get(reverse('my_account'))
         self.assertEqual(response.status_code, 200)
