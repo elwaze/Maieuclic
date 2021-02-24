@@ -31,14 +31,16 @@
         </p>
         <p class="text-white-50 mb-4">
         Le poste que je recherche :
+        {% for search_form in search_forms %}
             <form method="post" action="search_place">
                 {% csrf_token %}
                 {{ search_form.as_p }}
                 <button class="btn btn-primary mx-auto" type="submit" id="save_place_searched">Valider</button>
             </form>
+            <br>
+        {% endfor %}
         </p>
         <br>
-        <!-- rajouter un bouton + qui rajoute un search_form-->
     </div>
 </section>
 
