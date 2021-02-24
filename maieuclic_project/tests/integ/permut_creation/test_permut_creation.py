@@ -1,5 +1,8 @@
 from ..general_integ_tests import GeneralTestCase
 
+from permut_creation.models import Place, PermutSearch
+from user.models import MaieuclicUser
+
 
 class PermutCreationTestCase(GeneralTestCase):
 
@@ -21,12 +24,16 @@ class PermutCreationTestCase(GeneralTestCase):
         # submitting the form
         save_left_place.click()
         # check the returned result
-        self.assertIn('Recherche de permutation', self.selenium.page_source)
+        self.assertIn('38500', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
             '{}/permut_creation/leave_place'.format(self.live_server_url),
             "urlfound: " + self.selenium.current_url
         )
+        # check that left place is well saved in DB
+        left_place = MaieuclicUser.objects.get(email=self.created_user.email).place_id
+        self.assertEqual(left_place.city, city.upper())
+        self.assertEqual(left_place.zipcode, zipcode)
 
     def test_searched_place_ok(self):
         # find the form element
@@ -40,9 +47,13 @@ class PermutCreationTestCase(GeneralTestCase):
         # submitting the form
         save_searched_place.click()
         # check the returned result
-        self.assertIn('Recherche de permutation', self.selenium.page_source)
+        self.assertIn('38000', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
             '{}/permut_creation/search_place'.format(self.live_server_url),
             "urlfound: " + self.selenium.current_url
         )
+        # check that searched place is saved in DB
+        searched_place = PermutSearch.objects.get(email=self.created_user.email).place_id
+        self.assertEqual(searched_place.city, city.upper())
+        self.assertEqual(searched_place.zipcode, zipcode)
