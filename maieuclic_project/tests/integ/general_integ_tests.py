@@ -6,7 +6,7 @@ import json
 from django.test import LiveServerTestCase
 from user.models import MaieuclicUser
 from permut_management.models import Permut, UserPermutAssociation
-from permuct_creation.models import Place
+from permut_creation.models import Place
 
 from selenium import webdriver
 from seleniumlogin import force_login
