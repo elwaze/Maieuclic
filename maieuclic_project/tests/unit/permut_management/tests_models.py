@@ -20,16 +20,16 @@ class TestPermuts(TestCase):
         print(self.permut)
 
     def test_permut_objects(self):
-        self.assertIsInstance(Permut.objects)
+        self.assertIsInstance(Permut)
 
     def test_permut_columns(self):
         permut = Permut.objects.get(users=self.users)
         self.assertEqual(self.users, permut.users)
         self.assertEqual("CR", permut.permut_state)
-        self.assertIsInstance(permut.date_last_change)
-        self.assertIsInstance(permut.date_time)
+        self.assertIsInstance(permut.date_last_change, Permut)
+        self.assertIsInstance(permut.date_time, Permut)
         self.assertEqual(permut.date_time, permut.date_last_change)
-        self.assertIsInstance(permut.permut_id)
+        self.assertIsInstance(permut.permut_id, Permut)
 
 
 class TestUserPermutAssociation(TestCase):
@@ -37,8 +37,17 @@ class TestUserPermutAssociation(TestCase):
     def setUp(self):
         # get users from json fixture
         self.users = []
+
         with open('maieuclic_project/tests/test_fixtures.json') as fd:
             fixtures = json.load(fd)
+            places = []
+            index = 0
+        for place in fixtures["places"]:
+            new_place = Place.objects.create(city=place["city"], zipcode=place["zipcode"])
+            print("new_place")
+            print(new_place)
+            places.append(new_place)
+        # get users from json fixture
         for user in fixtures["users"]:
             print("user")
             print(user)
@@ -46,19 +55,20 @@ class TestUserPermutAssociation(TestCase):
                 email=user["email"],
                 password=user["password"],
                 user_state=True,
-                place_id=user["place_id"],
+                place_id=places[index],
                 is_active=True
             )
             print("new_user")
             print(new_user)
 
             self.users.append(user["email"])
+            index += 1
+
         print("users")
         print(self.users)
-        # get users from json fixture
         self.permut_id = Permut.objects.create(users=self.users)
         self.email_s = self.users[0]["email"]
-        self.place_id = Place.objects.create(city="tralala", zipcode="10001")
+        self.place_id = places[1]
         self.email = self.users[1]["email"]
         self.assoc = UserPermutAssociation.objects.create(
             email=self.email,
