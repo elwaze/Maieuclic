@@ -50,7 +50,7 @@ def my_permut(request):
                 emails = permut.users
                 for people in emails:
                     user_involved = MaieuclicUser.objects.get(email=people)
-                    if data['permut_state'] == 'CR' or 'RE' or 'NO':
+                    if data['permut_state'] == ('CR' or 'RE' or 'NO'):
                         user_involved.user_state = True
                     else:
                         user_involved.user_state = False
