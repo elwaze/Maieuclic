@@ -8,13 +8,6 @@ class PermutManagementTestCase(GeneralTestCase):
 
     def setUp(self):
         super().setUp()
-        # self.permut = Permut.objects.create(users=[self.created_user.email])
-        # self.user_permut_assoc = UserPermutAssociation.objects.create(
-        #     permut_id=self.permut,
-        #     email=self.created_user,
-        #     email_s=self.created_user,
-        #     place_id=self.place_id
-        # )
         # Opening the link we want to test
         self.url = '{}/permut_management/my_permut'.format(self.live_server_url)
         self.selenium.get(self.url)
@@ -39,7 +32,7 @@ class PermutManagementTestCase(GeneralTestCase):
         # submitting the form
         change_permut_state.click()
         # check the returned result
-        self.assertIn('under negociation', self.selenium.page_source)
+        self.assertIn('value="UN" selected="">', self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
             '{}/permut_management/my_permut'.format(self.live_server_url),
