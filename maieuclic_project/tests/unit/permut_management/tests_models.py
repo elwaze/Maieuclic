@@ -20,16 +20,16 @@ class TestPermuts(TestCase):
         print(self.permut)
 
     def test_permut_objects(self):
-        self.assertIsInstance(Permut)
+        self.assertIsInstance(self.permut, Permut.objects)
 
     def test_permut_columns(self):
         permut = Permut.objects.get(users=self.users)
         self.assertEqual(self.users, permut.users)
         self.assertEqual("CR", permut.permut_state)
-        self.assertIsInstance(permut.date_last_change, Permut)
-        self.assertIsInstance(permut.date_time, Permut)
+        # self.assertIsInstance(permut.date_last_change, Permut)
+        # self.assertIsInstance(permut.date_time, Permut)
         self.assertEqual(permut.date_time, permut.date_last_change)
-        self.assertIsInstance(permut.permut_id, Permut)
+        # self.assertIsInstance(permut.permut_id, Permut)
 
 
 class TestUserPermutAssociation(TestCase):
@@ -67,9 +67,9 @@ class TestUserPermutAssociation(TestCase):
         print("users")
         print(self.users)
         self.permut_id = Permut.objects.create(users=self.users)
-        self.email_s = self.users[0]["email"]
+        self.email_s = self.users[0]
         self.place_id = places[1]
-        self.email = self.users[1]["email"]
+        self.email = self.users[1]
         self.assoc = UserPermutAssociation.objects.create(
             email=self.email,
             email_s=self.email_s,
@@ -84,7 +84,7 @@ class TestUserPermutAssociation(TestCase):
         print(self.assoc.place_id)
 
     def test_user_permut_assoc_objects(self):
-        self.assertIsInstance(UserPermutAssociation.objects)
+        self.assertIsInstance(self.assoc, UserPermutAssociation.objects)
 
     def test_user_permut_assoc_columns(self):
         assoc = UserPermutAssociation.objects.get(id=self.assoc)
