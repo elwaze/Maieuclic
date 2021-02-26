@@ -29,7 +29,7 @@ class TestPlaceForms(TestCase):
 
     def test_place_form_wrong_city(self):
         data = {
-            'city': 38700,
+            'city': int('La Tronche'),
             'zipcode': '38700'
         }
         form = PlaceForm(data=data)

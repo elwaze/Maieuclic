@@ -8,7 +8,7 @@ class PermutManagementTestCase(GeneralTestCase):
 
     def setUp(self):
         super().setUp()
-        self.permut =Permut.objects.create(users=[self.created_user])
+        self.permut = Permut.objects.create(users=[self.created_user.email])
         # Opening the link we want to test
         self.url = '{}/permut_management/my_permut'.format(self.live_server_url)
         self.selenium.get(self.url)
@@ -16,6 +16,7 @@ class PermutManagementTestCase(GeneralTestCase):
     def test_view_permuts_ok(self):
         # check the returned result
         self.assertIn('Mes permuts possibles', self.selenium.page_source)
+        print(self.selenium.page_source)
         self.assertEqual(
             self.selenium.current_url,
             '{}/permut_management/my_permut'.format(self.live_server_url),
