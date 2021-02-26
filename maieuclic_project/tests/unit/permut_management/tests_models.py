@@ -16,8 +16,6 @@ class TestPermuts(TestCase):
             self.users.append(user["email"])
         # get users from json fixture
         self.permut = Permut.objects.create(users=self.users)
-        print('self.permut1')
-        print(self.permut)
 
     def test_permut_objects(self):
         self.assertIsInstance(self.permut, Permut)
@@ -43,13 +41,9 @@ class TestUserPermutAssociation(TestCase):
             index = 0
         for place in fixtures["places"]:
             new_place = Place.objects.create(city=place["city"], zipcode=place["zipcode"])
-            print("new_place")
-            print(new_place)
             places.append(new_place)
         # get users from json fixture
         for user in fixtures["users"]:
-            print("user")
-            print(user)
             new_user = MaieuclicUser.objects.create(
                 email=user["email"],
                 password=user["password"],
@@ -57,14 +51,10 @@ class TestUserPermutAssociation(TestCase):
                 place_id=places[index],
                 is_active=True
             )
-            print("new_user")
-            print(new_user)
 
             self.users.append(new_user)
             index += 1
 
-        print("users")
-        print(self.users)
         self.permut_id = Permut.objects.create(users=self.users)
         self.email_s = self.users[0]
         self.place_id = places[1]
@@ -75,18 +65,12 @@ class TestUserPermutAssociation(TestCase):
             place_id=self.place_id,
             permut_id=self.permut_id
         )
-        print("self.assoc")
-        print(self.assoc)
-        print(self.assoc.email_s)
-        print(self.assoc.email)
-        print(self.assoc.permut_id)
-        print(self.assoc.place_id)
 
     def test_user_permut_assoc_objects(self):
         self.assertIsInstance(self.assoc, UserPermutAssociation)
 
     def test_user_permut_assoc_columns(self):
-        assoc = UserPermutAssociation.objects.get(id=self.assoc)
+        assoc = UserPermutAssociation.objects.get(id=self.assoc.id)
         self.assertEqual(assoc.email_s, self.email_s)
         self.assertEqual(assoc.email, self.email)
         self.assertEqual(assoc.permut_id, self.permut_id)
