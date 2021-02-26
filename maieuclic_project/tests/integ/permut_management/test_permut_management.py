@@ -1,6 +1,6 @@
 from ..general_integ_tests import GeneralTestCase
 
-from permut_management.models import Permut
+from permut_management.models import Permut, UserPermutAssociation
 from user.models import MaieuclicUser
 
 
@@ -8,7 +8,13 @@ class PermutManagementTestCase(GeneralTestCase):
 
     def setUp(self):
         super().setUp()
-        self.permut = Permut.objects.create(users=[self.created_user.email])
+        # self.permut = Permut.objects.create(users=[self.created_user.email])
+        # self.user_permut_assoc = UserPermutAssociation.objects.create(
+        #     permut_id=self.permut,
+        #     email=self.created_user,
+        #     email_s=self.created_user,
+        #     place_id=self.place_id
+        # )
         # Opening the link we want to test
         self.url = '{}/permut_management/my_permut'.format(self.live_server_url)
         self.selenium.get(self.url)
