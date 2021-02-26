@@ -26,11 +26,3 @@ class TestPlaceForms(TestCase):
         }
         form = PlaceForm(data=data)
         self.assertFalse(form.is_valid())
-
-    def test_place_form_wrong_city(self):
-        data = {
-            'city': int(38700),
-            'zipcode': '38700'
-        }
-        form = PlaceForm(data=data)
-        self.assertFalse(form.is_valid())
