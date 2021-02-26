@@ -5,6 +5,8 @@ import json
 
 from django.test import LiveServerTestCase
 from user.models import MaieuclicUser
+from permut_management.models import Permut, UserPermutAssociation
+from permut_creation.models import Place
 
 from selenium import webdriver
 from seleniumlogin import force_login
@@ -43,6 +45,14 @@ class GeneralTestCase(LiveServerTestCase):
     def setup_fixtures(cls):
         cls.created_user = MaieuclicUser.objects.create_superuser(
             email=EMAIL, password=PASSWORD
+        )
+        cls.permut = Permut.objects.create(users=[cls.created_user.email])
+        cls.place = Place.objects.create(city='VOIRON', zipcode='38500')
+        cls.user_permut_assoc = UserPermutAssociation.objects.create(
+            permut_id=cls.permut,
+            email=cls.created_user,
+            email_s=cls.created_user,
+            place_id=cls.place
         )
 
     @classmethod
