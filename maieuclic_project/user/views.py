@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
-from .models import MaieuclicUser
-from .forms import SigninForm, SignupForm, AccountForm
-from .tokens import account_activation_token
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
+
+from .models import MaieuclicUser
+from .forms import SigninForm, SignupForm, AccountForm
+from .tokens import account_activation_token
 
 # Create your views here.
 
@@ -63,7 +64,7 @@ def signup(request):
             # checking form data
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
-            # Creating user
+            # creating user
             user = MaieuclicUser.objects.create_user(email, password)
             user.is_active = False
             user.save()
@@ -109,10 +110,10 @@ def my_account(request):
     if request.method == "POST":
         form = AccountForm(request.POST)
         if form.is_valid():
+            # checking form data
             data = form.cleaned_data
             user.phone_number = data['phone_number']
             user.first_name = data['first_name']
-            #user.set_password(data['password'])
             user.phone_authorization = data['phone_authorization']
             user.email_authorization = data['email_authorization']
             user.save()
@@ -121,6 +122,7 @@ def my_account(request):
         else:
             error = True
     else:
+        # initiating form with data from DB
         form = AccountForm()
         form.fields['phone_number'].initial = user.phone_number
         form.fields['first_name'].initial = user.first_name
@@ -151,9 +153,5 @@ def activate(request, uidb64, token):
         return HttpResponse('Le lien d\'activation est invalide, veuillez réessayer !')
 
 
-def change_my_account(request, field, value):
-    pass
-
-
-def delete_account(request):
-    pass
+# def delete_account(request):
+#     pass

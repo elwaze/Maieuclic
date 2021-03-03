@@ -36,6 +36,9 @@ class MaieuclicUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
     def save_place_left(self, email, place_id):
+        """
+        Add place_id to the user.
+        """
         user = MaieuclicUser.objects.get(email=email)
         user.place_id = place_id
         user.user_state = True

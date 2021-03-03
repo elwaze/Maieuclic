@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'maieuclic_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = { # travis DB
+DATABASES = {  # travis DB
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': '',

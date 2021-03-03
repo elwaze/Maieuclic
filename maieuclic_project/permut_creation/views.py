@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from .forms import PlaceForm
 from .models import Place, PermutSearch
 from user.models import MaieuclicUser
@@ -7,15 +8,20 @@ from user.models import MaieuclicUser
 
 
 def leave_place(request):
+    """
+    Showing/changing the place left by the user.
+    """
     error = False
     if request.method == "POST":
-
+        # save place left by the user.
         leave_form = PlaceForm(request.POST, prefix="leave")
         if leave_form.is_valid():
             city = leave_form.cleaned_data['city']
             zipcode = leave_form.cleaned_data['zipcode']
             place_left = Place.objects.create_place(city, zipcode)[0]
             MaieuclicUser.objects.save_place_left(request.user.email, place_left)
+
+            # get place(s) left by the user.
             search_forms = []
             places_searched = PermutSearch.objects.filter(email=request.user)
             for permut in places_searched:
@@ -34,6 +40,7 @@ def leave_place(request):
             error = True
 
     else:
+        # get place(s) left by the user.
         search_forms = []
         places_searched = PermutSearch.objects.filter(email=request.user)
         for permut in places_searched:
@@ -45,6 +52,8 @@ def leave_place(request):
             search_forms.append(search_form)
         search_form = PlaceForm(prefix="search")
         search_forms.append(search_form)
+
+        # get place left by the user.
         leave_form = PlaceForm(prefix="leave")
         try:
             place_left = Place.objects.get(pk=request.user.place_id.place_id)
@@ -56,8 +65,12 @@ def leave_place(request):
 
 
 def search_place(request):
+    """
+    Showing/changing the place(s) searched by the user.
+    """
     error = False
     if request.method == "POST":
+        # save place(s) searched by the user.
         search_forms = []
         places_searched = PermutSearch.objects.filter(email=request.user)
         for permut in places_searched:
@@ -75,6 +88,8 @@ def search_place(request):
             search_forms.append(search_form)
             search_form = PlaceForm(prefix="search")
             search_forms.append(search_form)
+
+            # get place left by the user.
             leave_form = PlaceForm(prefix="leave")
             try:
                 place_left = Place.objects.get(pk=request.user.place_id.place_id)
@@ -88,6 +103,7 @@ def search_place(request):
             error = True
 
     else:
+        # get place(s) searched by the user.
         search_forms = []
         places_searched = PermutSearch.objects.filter(email=request.user)
         for permut in places_searched:
@@ -99,6 +115,8 @@ def search_place(request):
             search_forms.append(search_form)
         search_form = PlaceForm(prefix="search")
         search_forms.append(search_form)
+
+        # get place left by the user.
         leave_form = PlaceForm(prefix="leave")
         try:
             place_left = Place.objects.get(pk=request.user.place_id.place_id)
