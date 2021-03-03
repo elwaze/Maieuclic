@@ -6,6 +6,7 @@ save new permutations in DB and send notification email to the involved people.
 import logging
 
 from django.core.management.base import BaseCommand
+
 from user.models import MaieuclicUser
 from permut_creation.models import PermutSearch, Place
 from permut_management.models import Permut, UserPermutAssociation
@@ -44,6 +45,9 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('permutations successfully saved'))
 
     def create_graph(self):
+        """
+        Creates a graph whith all the plasses left and all the places searched.
+        """
         graph = {}
 
         # get the users with user.user_state = True and with at least 1 place searched
@@ -62,6 +66,9 @@ class Command(BaseCommand):
         return graph
 
     def find_permuts(self, graph, start, end, path=None):
+        """
+        Walking threw the graph to find loop paths.
+        """
         if path is None:
             path = []
         path = path + [start]
@@ -76,6 +83,9 @@ class Command(BaseCommand):
         return permuts
 
     def save_permut(self, permut, nb_new_permuts):
+        """
+        Saving permut found if not already exists in DB.
+        """
         users = []
         for node in permut:
             users.append(node[0])

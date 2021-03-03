@@ -9,7 +9,9 @@ from user.models import MaieuclicUser
 
 
 def my_permut(request):
-
+    """
+    Showing the possible permutation.
+    """
     error = False
     user = request.user
 
@@ -27,11 +29,11 @@ def my_permut(request):
             except AttributeError:
                 phone = "La personne qui libère ce poste n'a pas renseigné son numéro de téléphone."
         else:
-            phone = "La personne qui libère ce poste ne nous a pas autorisés à vous communiquer son numéro de téléphone."
+            phone = "La personne qui libère ce poste ne nous a pas autorisés à communiquer son numéro de téléphone."
         if contact.email_authorization:
             email = contact.email
         else:
-            email = "La personne qui libère ce poste ne nous a pas autorisés à vous communiquer son adresse mail."
+            email = "La personne qui libère ce poste ne nous a pas autorisés à communiquer son adresse mail."
         permutation = {
             'place': "{} ({})".format(place.city, place.zipcode),
             'mail': email,
@@ -42,7 +44,6 @@ def my_permut(request):
         if request.method == "POST":
             form = PermutStateForm(request.POST)
             if form.is_valid():
-                # pb ici : est-ce que j'affiche par def l'etat de la permut ?
                 data = form.cleaned_data
                 permut.permut_state = data['permut_state']
                 permut.save()

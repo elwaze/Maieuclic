@@ -1,16 +1,12 @@
-import os
-import json
-
-# from tests import TESTS_ROOT
-
 from django.test import LiveServerTestCase
-from user.models import MaieuclicUser
-from permut_management.models import Permut, UserPermutAssociation
-from permut_creation.models import Place
 
 from selenium import webdriver
 from seleniumlogin import force_login
 from webdriver_manager.chrome import ChromeDriverManager
+
+from user.models import MaieuclicUser
+from permut_management.models import Permut, UserPermutAssociation
+from permut_creation.models import Place
 
 
 PASSWORD = 'connection'

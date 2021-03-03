@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
-from.forms import ContactForm
-
+from .forms import ContactForm
 from user.models import MaieuclicUser
+
 
 # Create your views here.
 

@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 
-# from permut_creation.models import Place, PermutSearch
 from user.models import MaieuclicUser
 
 
