@@ -11,8 +11,6 @@ class GeneralTestPlace(TestCase):
         self.left_place = {
             'city': 'Voiron',
             'zipcode': '38500'
-            # 'lat': 45.36939719281337,
-            # 'lng': 5.595415411643872
         }
         self.searched_place = {
             'city': 'La Tronche',
@@ -21,8 +19,6 @@ class GeneralTestPlace(TestCase):
         Place.objects.create(
             city=self.left_place['city'],
             zipcode=self.left_place['zipcode']
-            # lat=self.left_place['lat'],
-            # lng=self.left_place['lng']
         )
         Place.objects.create(
             city=self.searched_place['city'],
@@ -46,8 +42,6 @@ class TestPlace(GeneralTestPlace):
         place = Place.objects.get(city=self.left_place['city'])
         self.assertEqual(self.left_place['city'], place.city)
         self.assertEqual(self.left_place['zipcode'], place.zipcode)
-        # self.assertEqual(self.left_place['lat'], place.lat)
-        # self.assertEqual(self.left_place['lng'], place.lng)
 
     def test_place_associated_to_user(self):
         place = Place.objects.get(city=self.left_place['city'])

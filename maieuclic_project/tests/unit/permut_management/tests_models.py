@@ -9,12 +9,12 @@ from user.models import MaieuclicUser
 class TestPermuts(TestCase):
     """Tests permuts creation in DB."""
     def setUp(self):
+        # get users from json fixture
         self.users = []
         with open('maieuclic_project/tests/test_fixtures.json') as fd:
             fixtures = json.load(fd)
         for user in fixtures["users"]:
             self.users.append(user["email"])
-        # get users from json fixture
         self.permut = Permut.objects.create(users=self.users)
 
     def test_permut_objects(self):
@@ -32,17 +32,16 @@ class TestPermuts(TestCase):
 class TestUserPermutAssociation(TestCase):
     """Tests user-permut associations creation in DB."""
     def setUp(self):
-        # get users from json fixture
         self.users = []
-
         with open('maieuclic_project/tests/test_fixtures.json') as fd:
             fixtures = json.load(fd)
             places = []
             index = 0
+        # create places from json fixture
         for place in fixtures["places"]:
             new_place = Place.objects.create(city=place["city"], zipcode=place["zipcode"])
             places.append(new_place)
-        # get users from json fixture
+        # create users from json fixture
         for user in fixtures["users"]:
             new_user = MaieuclicUser.objects.create(
                 email=user["email"],

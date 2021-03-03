@@ -2,7 +2,6 @@ from ..general_integ_tests import EMAIL, PASSWORD
 from ..general_integ_tests import GeneralTestCase
 
 from django.core import mail
-from django.template.loader import render_to_string
 
 import re
 
@@ -150,8 +149,5 @@ class AccountTestCase(GeneralTestCase):
         signout = self.selenium.find_element_by_xpath('//a[@href="/user/signout"]')
         signout.click()
 
-    # def test_change_my_account(self):
-    #     pass
-    #
     # def test_delete_account(self):
     #     pass

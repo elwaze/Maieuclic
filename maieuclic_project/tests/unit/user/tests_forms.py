@@ -18,11 +18,6 @@ class TestUserForms(TestCase):
         self.pwd_confirm = 'me'
         self.client = Client()
         self.user = MaieuclicUser.objects.create_user(email=self.email, password=self.password)
-        # self.data = {
-        #     'email': self.email,
-        #     'password': self.password,
-        #     # 'pwd_confirm': self.pwd_confirm
-        # }
 
     def test_user_wrong_email(self):
         """
@@ -48,15 +43,13 @@ class TestUserForms(TestCase):
         }
         form = SigninForm(data=data)
         self.assertTrue(form.is_valid())
-        with self.assertRaises(MaieuclicUser.DoesNotExist): # si fonctionne pas, faire un filter et liste retournée doit etre nulle
+        with self.assertRaises(MaieuclicUser.DoesNotExist):
             MaieuclicUser.objects.get(email=form.cleaned_data["email"], password=form.cleaned_data["password"])
 
     def test_user_valid_signinform(self):
         """
         Tests if the user tries to signin to an account with valid values.
         """
-        # data = self.data
-        # data['pwd_confirm'] = data['password']
         data = {
             'email': self.email,
             'password': self.password
