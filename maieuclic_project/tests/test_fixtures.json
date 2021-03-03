@@ -2,31 +2,18 @@
   "users": [
     {
       "email": "user1@maieuclic.com",
-      "password": "password1"
+      "password": "password1",
+      "place": 0
     },
     {
       "email": "user2@maieuclic.com",
-      "password": "password2"
+      "password": "password2",
+      "place": 1
     },
     {
       "email": "user3@maieuclic.com",
-      "password": "password3"
-    }
-  ],
-  "permuts": [
-    {
-
-    },
-    {
-
-    }
-  ],
-  "user_permut_assoc": [
-    {
-
-    },
-    {
-
+      "password": "password3",
+      "place": 2
     }
   ],
   "places": [
