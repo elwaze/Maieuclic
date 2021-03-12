@@ -24,22 +24,24 @@ def legal_notices(request):
 def contact(request):
     form = ContactForm(request.POST or None)
     if form.is_valid():
+        sender = form.cleaned_data['sender']
+        to_email = ["maieuclic@gmail.com"]
         subject = form.cleaned_data['subject']
         message = form.cleaned_data['message']
+        send_copy = form.cleaned_data['send_copy']
+        # add the sender e-mail in recipients if send_copy has been clicked
+        if send_copy:
+            to_email.append(sender)
+        else:
+            message = "message from : {} : {}".format(sender, message)
         context = {
             'message': message
         }
-        sender = form.cleaned_data['sender']
-        send_copy = form.cleaned_data['send_copy']
-        to_email = ["maieuclic@gmail.com"]
-        # add the sender e-main in recipients if send_copy has been clicked
-        if send_copy:
-            to_email.append(sender)
-
+        from_email = "maieuclic@gmail.com"
         email_content = render_to_string('contact_email.html', context)
         alt_text_content = "Bonjour, Le message suivant a été envoyé à Maïeuclic : {}".format(message)
         email = EmailMultiAlternatives(
-            subject, alt_text_content, sender, to_email
+            subject, alt_text_content, from_email, to_email
         )
         email.attach_alternative(email_content, "text/html")
         response = email.send()
