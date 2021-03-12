@@ -83,7 +83,7 @@ def signup(request):
                 context['domain'], context['uid'], context['token'])
 
             email = EmailMultiAlternatives(
-                subject, alt_text_content, 'do_not_reply@maieuclic.com', to_email
+                subject, alt_text_content, 'maieuclic@gmail.com', to_email
             )
             email.attach_alternative(email_content, "text/html")
             response = email.send()
