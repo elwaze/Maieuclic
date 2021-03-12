@@ -30,9 +30,9 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # email confirmation settings
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'maieuclic@gmail.com'
-EMAIL_HOST_PASSWORD = 'maieuclicMdp!'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
 EMAIL_PORT = 587
 
 SITE_LINK = 'http://127.0.0.1:8000'
