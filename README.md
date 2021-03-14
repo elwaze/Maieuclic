@@ -14,4 +14,4 @@ Grâce à une alerte mail, ils peuvent être mis en relation avec les profils qu
 
 Dans une période où les soignants sont en souffrance, et où la société ne prend pas assez en compte les difficultés qu'ils rencontrent, il m'a semblé essentiel de tenter d'améliorer leur bien-être. Ayant moi-même quitté une profession médicale et suivant encore par mon réseau ces difficultés et les motifs de volonté de reconversion professionnelle des soignants, je suis très bien placée pour percevoir ce besoin et tenter d'y répondre. Ce projet prend toute sa part dans mon processus personnel de reconversion professionnelle, et est pour moi l'accomplissement de cette reconversion.
 
-lien vers le projet déployé : 
+lien vers le projet déployé : http://188.166.54.87/
