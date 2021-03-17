@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+LOGIN_URL = '/user/signin'
+
 # email confirmation settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.sendgrid.net'

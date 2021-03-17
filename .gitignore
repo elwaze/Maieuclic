@@ -5,5 +5,4 @@ __pycache__/
 .gitignore
 .coverage
 .coveragerc
-coverage_html_report/
 __pycache__

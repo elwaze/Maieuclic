@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .forms import PlaceForm
 from .models import Place, PermutSearch
@@ -7,6 +8,7 @@ from user.models import MaieuclicUser
 # Create your views here.
 
 
+@login_required
 def leave_place(request):
     """
     Showing/changing the place left by the user.
@@ -64,6 +66,7 @@ def leave_place(request):
     return render(request, 'permut_search.html', locals())
 
 
+@login_required
 def search_place(request):
     """
     Showing/changing the place(s) searched by the user.
