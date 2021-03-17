@@ -55,6 +55,9 @@ class TestUserViews(TestCase):
         """
         Signing out should return a http code = 200. and redirect to home page.
         """
+        self.user.is_active = True
+        self.user.save()
+        self.client.login(email=self.email, password=self.password)
         response = self.client.get(reverse('signout'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='core/home.html')

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.template.loader import render_to_string
@@ -41,6 +42,7 @@ def signin(request):
 
 
 # signout
+@login_required
 def signout(request):
     """
     Logging the user out.
@@ -100,6 +102,7 @@ def signup(request):
 
 
 # my_account
+@login_required
 def my_account(request):
     """
     Getting the user's personal page.
