@@ -59,7 +59,7 @@ class TestUserViews(TestCase):
         self.user.save()
         self.client.login(email=self.email, password=self.password)
         response = self.client.get(reverse('signout'))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(template_name='core/home.html')
 
     def test_user_signup(self):
